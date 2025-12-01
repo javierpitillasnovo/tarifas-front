@@ -1,1 +1,305 @@
-/* You can add global styles to this file, and also import other style files */
+// ============================================================================
+// TARIFAS-FRONT - ESTILOS GLOBALES
+// Aplicación de Gestión de Tarifas - Agroseguro
+// ============================================================================
+
+// Variables y base
+@use 'variables' as *;
+@use 'base' as *;
+
+// ============================================================================
+// ESTILOS GLOBALES DE LA APLICACIÓN
+// ============================================================================
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font;
+  background: $gray-50;
+  color: $gray-900;
+}
+
+// ============================================================================
+// CLASES DE UTILIDAD
+// ============================================================================
+
+// Backgrounds
+.bg-verde { background-color: $verde !important; }
+.bg-verde-50 { background-color: $verde-50 !important; }
+.bg-rojo { background-color: $rojo !important; }
+.bg-rojo-50 { background-color: $rojo-50 !important; }
+.bg-white { background-color: $white !important; }
+.bg-gray-50 { background-color: $gray-50 !important; }
+.bg-gray-100 { background-color: $gray-100 !important; }
+
+// Textos
+.text-verde { color: $verde !important; }
+.text-rojo { color: $rojo !important; }
+.text-gray-500 { color: $gray-500 !important; }
+.text-gray-700 { color: $gray-700 !important; }
+.text-gray-900 { color: $gray-900 !important; }
+
+// Bordes
+.border-verde { border-color: $verde !important; }
+.border-gray-200 { border-color: $gray-200 !important; }
+
+// ============================================================================
+// CARD
+// ============================================================================
+.card {
+  background: $white;
+  border: 1px solid $gray-200;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-sm;
+  
+  &-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid $gray-200;
+    
+    h3 {
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      color: $gray-900;
+      margin: 0;
+    }
+  }
+  
+  &-body {
+    padding: 20px;
+  }
+  
+  &-footer {
+    padding: 16px 20px;
+    border-top: 1px solid $gray-200;
+    background: $gray-50;
+    border-radius: 0 0 $radius-xl $radius-xl;
+  }
+}
+
+// ============================================================================
+// BADGE
+// ============================================================================
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: $font-weight-medium;
+  border-radius: $radius-full;
+  
+  &-verde {
+    background: $verde-50;
+    color: $verde;
+  }
+  
+  &-rojo {
+    background: $rojo-50;
+    color: $rojo;
+  }
+  
+  &-gray {
+    background: $gray-100;
+    color: $gray-600;
+  }
+}
+
+// ============================================================================
+// ALERT
+// ============================================================================
+.alert {
+  padding: 12px 16px;
+  border-radius: $radius-lg;
+  border-left: 4px solid;
+  font-size: $font-size-sm;
+  
+  &-success {
+    background: $color-success-light;
+    border-color: $color-success;
+    color: darken($color-success, 20%);
+  }
+  
+  &-warning {
+    background: $color-warning-light;
+    border-color: $color-warning;
+    color: darken($color-warning, 25%);
+  }
+  
+  &-error {
+    background: $color-error-light;
+    border-color: $color-error;
+    color: darken($color-error, 10%);
+  }
+  
+  &-info {
+    background: $color-info-light;
+    border-color: $color-info;
+    color: darken($color-info, 20%);
+  }
+}
+
+// ============================================================================
+// FORM CONTROL
+// ============================================================================
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: $font;
+  font-size: $font-size-sm;
+  color: $gray-900;
+  background: $white;
+  border: 1px solid $gray-300;
+  border-radius: $radius-md;
+  transition: all $transition-fast;
+  
+  &:hover {
+    border-color: $gray-400;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: $verde;
+    box-shadow: 0 0 0 3px rgba($verde, 0.1);
+  }
+  
+  &::placeholder {
+    color: $gray-400;
+  }
+  
+  &:disabled {
+    background: $gray-100;
+    cursor: not-allowed;
+  }
+}
+
+.form-label {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $gray-700;
+  margin-bottom: 6px;
+}
+
+// ============================================================================
+// TABLE
+// ============================================================================
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: $font;
+  
+  th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $gray-500;
+    background: $gray-50;
+    border-bottom: 1px solid $gray-200;
+  }
+  
+  td {
+    padding: 16px;
+    font-size: $font-size-sm;
+    color: $gray-900;
+    border-bottom: 1px solid $gray-200;
+  }
+  
+  tr:hover td {
+    background: $gray-50;
+  }
+}
+
+// ============================================================================
+// BOTONES
+// ============================================================================
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-family: $font;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  border-radius: $radius-lg;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all $transition-fast;
+  text-decoration: none;
+  
+  &:hover:not(:disabled) {
+    box-shadow: $shadow-sm;
+  }
+  
+  &:focus {
+    outline: none;
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+  }
+  
+  &-primary {
+    background: $verde;
+    color: $white;
+    
+    &:hover:not(:disabled) {
+      background: $verde-dark;
+    }
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($verde, 0.2);
+    }
+    
+    &:disabled {
+      background: $gray-300;
+      color: $gray-500;
+    }
+  }
+  
+  &-secondary {
+    background: $white;
+    border-color: $verde;
+    color: $verde;
+    
+    &:hover:not(:disabled) {
+      background: $verde-50;
+    }
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($verde, 0.2);
+    }
+  }
+  
+  &-danger {
+    background: $rojo;
+    color: $white;
+    
+    &:hover:not(:disabled) {
+      background: darken($rojo, 8%);
+    }
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($rojo, 0.2);
+    }
+  }
+  
+  &-ghost {
+    background: transparent;
+    color: $verde;
+    
+    &:hover:not(:disabled) {
+      background: $verde-50;
+    }
+  }
+}

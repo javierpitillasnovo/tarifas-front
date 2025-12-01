@@ -1,0 +1,208 @@
+// ============================================================================
+// TARIFAS-FRONT - VARIABLES
+// Sistema de Diseño Agroseguro - Formato Prototipos UI
+// ============================================================================
+
+// ============================================================================
+// COLORES CORPORATIVOS AGROSEGURO
+// ============================================================================
+
+// Verde Principal
+$verde: #587A43;
+$verde-dark: #3d5530;
+$verde-light: #8CAF75;
+$verde-50: #f0f5ed;
+$verde-100: #e1ebdb;
+
+// Rojo
+$rojo: #823D30;
+$rojo-light: #a85444;
+$rojo-50: #fdf2f0;
+$rojo-100: #fce8e4;
+
+// Azul
+$azul: #64848C;
+$azul-light: #8ba5ac;
+$azul-50: #f0f5f6;
+$azul-100: #e1ebee;
+
+// Amarillo
+$amarillo: #D4A574;
+$amarillo-light: #e3c0a0;
+$amarillo-50: #fdf8f3;
+$amarillo-100: #faf0e6;
+
+// Marrón
+$marron: #56483F;
+$marron-light: #7a6a5f;
+$marron-50: #f5f3f2;
+$marron-100: #eae6e4;
+
+// Colores adicionales para aplicaciones
+$morado: #6B5B95;
+$morado-light: #8d7fb3;
+$morado-50: #f4f2f8;
+
+$coral: #C56C5E;
+$coral-light: #d99185;
+$coral-50: #fcf3f2;
+
+
+// ============================================================================
+// NEUTROS
+// ============================================================================
+$white: #FFFFFF;
+$gray-25: #FCFCFD;
+$gray-50: #F9FAFB;
+$gray-100: #F2F4F7;
+$gray-200: #EAECF0;
+$gray-300: #D0D5DD;
+$gray-400: #98A2B3;
+$gray-500: #667085;
+$gray-600: #475467;
+$gray-700: #344054;
+$gray-800: #1D2939;
+$gray-900: #101828;
+
+
+// ============================================================================
+// TIPOGRAFÍA - Mulish
+// ============================================================================
+$font: 'Mulish', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-family-primary: $font;
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 1.875rem;
+$font-size-4xl: 2.25rem;
+
+
+// ============================================================================
+// SOMBRAS
+// ============================================================================
+$shadow-xs: 0px 1px 2px rgba(16, 24, 40, 0.05);
+$shadow-sm: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+$shadow-md: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
+$shadow-lg: 0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+$shadow-xl: 0px 20px 24px -4px rgba(16, 24, 40, 0.08), 0px 8px 8px -4px rgba(16, 24, 40, 0.03);
+
+
+// ============================================================================
+// LAYOUT
+// ============================================================================
+$sidebar-width: 260px;
+$sidebar-collapsed: 72px;
+$header-height: 64px;
+
+
+// ============================================================================
+// TRANSICIONES Y BORDER RADIUS
+// ============================================================================
+$transition-fast: 0.15s ease;
+$transition-normal: 0.2s ease;
+$transition-slow: 0.3s ease;
+
+$radius-sm: 6px;
+$radius-md: 8px;
+$radius-lg: 10px;
+$radius-xl: 12px;
+$radius-2xl: 16px;
+$radius-full: 9999px;
+
+
+// ============================================================================
+// ESPACIADO
+// ============================================================================
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 20px;
+$space-6: 24px;
+$space-8: 32px;
+$space-10: 40px;
+$space-12: 48px;
+
+
+// ============================================================================
+// COMPATIBILIDAD CON NOMENCLATURA ANTERIOR
+// (Para que el código existente siga funcionando)
+// ============================================================================
+$color-primary-green: $verde;
+$color-primary-red: $rojo;
+$color-primary-blue: $azul;
+$color-primary-yellow: $amarillo;
+$color-primary-brown: $marron;
+$color-primary-black: $gray-900;
+$color-white: $white;
+$color-grey: $gray-300;
+$color-grey-02: $gray-100;
+$color-grey-03: $gray-50;
+
+// Variaciones con opacidad
+$color-secondary-black-66: rgba($gray-900, 0.66);
+$color-secondary-black-33: rgba($gray-900, 0.33);
+$color-secondary-black-10: rgba($gray-900, 0.1);
+$color-secondary-green-80: rgba($verde, 0.8);
+$color-secondary-green-60: rgba($verde, 0.6);
+$color-secondary-green-30: rgba($verde, 0.3);
+$color-secondary-green-15: rgba($verde, 0.15);
+$color-secondary-green-07: rgba($verde, 0.07);
+
+// Estados
+$color-success: #10B981;
+$color-success-light: #D1FAE5;
+$color-warning: #F59E0B;
+$color-warning-light: #FEF3C7;
+$color-error: #EF4444;
+$color-error-light: #FEE2E2;
+$color-info: #3B82F6;
+$color-info-light: #DBEAFE;
+
+
+// ============================================================================
+// CSS CUSTOM PROPERTIES
+// ============================================================================
+:root {
+  --verde: #{$verde};
+  --verde-dark: #{$verde-dark};
+  --verde-light: #{$verde-light};
+  --verde-50: #{$verde-50};
+  --rojo: #{$rojo};
+  --rojo-50: #{$rojo-50};
+  --azul: #{$azul};
+  --amarillo: #{$amarillo};
+  --marron: #{$marron};
+  
+  --white: #{$white};
+  --gray-50: #{$gray-50};
+  --gray-100: #{$gray-100};
+  --gray-200: #{$gray-200};
+  --gray-300: #{$gray-300};
+  --gray-400: #{$gray-400};
+  --gray-500: #{$gray-500};
+  --gray-600: #{$gray-600};
+  --gray-700: #{$gray-700};
+  --gray-800: #{$gray-800};
+  --gray-900: #{$gray-900};
+  
+  --font: #{$font};
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+  
+  --sidebar-width: #{$sidebar-width};
+  --sidebar-collapsed: #{$sidebar-collapsed};
+  --header-height: #{$header-height};
+}

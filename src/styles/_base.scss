@@ -1,0 +1,181 @@
+// ============================================================================
+// TARIFAS-FRONT - ESTILOS BASE
+// Tipografía y elementos base - Formato Prototipos
+// ============================================================================
+
+@use 'variables' as *;
+
+// ============================================================================
+// GOOGLE FONTS - MULISH
+// ============================================================================
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+
+// ============================================================================
+// MIXINS DE ENCABEZADOS
+// ============================================================================
+
+@mixin h1 {
+  font-family: $font;
+  font-size: 2.25rem;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  color: $gray-900;
+}
+
+@mixin h2 {
+  font-family: $font;
+  font-size: 1.875rem;
+  font-weight: $font-weight-bold;
+  line-height: 1.25;
+  color: $gray-900;
+}
+
+@mixin h3 {
+  font-family: $font;
+  font-size: 1.5rem;
+  font-weight: $font-weight-semibold;
+  line-height: 1.3;
+  color: $gray-900;
+}
+
+@mixin h4 {
+  font-family: $font;
+  font-size: 1.25rem;
+  font-weight: $font-weight-semibold;
+  line-height: 1.35;
+  color: $gray-900;
+}
+
+@mixin h5 {
+  font-family: $font;
+  font-size: 1.125rem;
+  font-weight: $font-weight-semibold;
+  line-height: 1.4;
+  color: $gray-900;
+}
+
+@mixin h6 {
+  font-family: $font;
+  font-size: 1rem;
+  font-weight: $font-weight-semibold;
+  line-height: 1.5;
+  color: $gray-900;
+}
+
+
+// ============================================================================
+// MIXINS DE CUERPO DE TEXTO
+// ============================================================================
+
+@mixin body-regular {
+  font-family: $font;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-regular;
+  line-height: 1.5;
+  color: $gray-700;
+}
+
+@mixin body-bold {
+  font-family: $font;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  line-height: 1.5;
+}
+
+@mixin body-small {
+  font-family: $font;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-regular;
+  line-height: 1.5;
+}
+
+
+// ============================================================================
+// MIXINS ESPECIALES
+// ============================================================================
+
+@mixin label {
+  font-family: $font;
+  font-size: 11px;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: $gray-500;
+}
+
+@mixin section-title {
+  font-family: $font;
+  font-size: 11px;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.5);
+}
+
+@mixin links {
+  font-family: $font;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $verde;
+  text-decoration: none;
+  transition: color $transition-fast;
+  
+  &:hover {
+    color: $verde-dark;
+  }
+}
+
+@mixin button-text {
+  font-family: $font;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+}
+
+@mixin form-label {
+  font-family: $font;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $gray-700;
+}
+
+
+// ============================================================================
+// ESTILOS GLOBALES BASE
+// ============================================================================
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font;
+  background-color: $gray-50;
+  color: $gray-900;
+  @include body-regular;
+}
+
+h1, .h1 { @include h1; margin-bottom: 1.5rem; }
+h2, .h2 { @include h2; margin-bottom: 1.25rem; }
+h3, .h3 { @include h3; margin-bottom: 1rem; }
+h4, .h4 { @include h4; margin-bottom: 0.875rem; }
+h5, .h5 { @include h5; margin-bottom: 0.75rem; }
+h6, .h6 { @include h6; margin-bottom: 0.5rem; }
+
+p {
+  margin-bottom: 1rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  @include links;
+}
+
+strong, b {
+  font-weight: $font-weight-semibold;
+}

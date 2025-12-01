@@ -103,6 +103,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
+                "src/styles",
                 "node_modules/@agroseguro/lib-ui-agroseguro/"
               ]
             },
@@ -137,6 +138,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
+                "src/styles",
                 "node_modules/@agroseguro/lib-ui-agroseguro/"
               ]
             },
