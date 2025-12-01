@@ -1,0 +1,44 @@
+<div class="consultaModal">
+  <h2 class="consultaModal__title">Consulta de valores de tarifas</h2>
+
+  <div class="consultaModal__text-container">
+    <!-- SELECT DE FACTOR -->
+    <ui-select
+      [selectOptions]="factoresSelectOptions"
+      type="select"
+      placeholder="Seleccionar factor"
+      (selectChanges)="onSelectFactor($event)"
+      class="consultaModal__select"
+    ></ui-select>
+
+    <!-- SELECT DE GRUPO DE VALORES: solo se muestra si hay factor seleccionado -->
+   @if (selectedFactor()) {
+        <ui-select
+            [selectOptions]="listAllGruposValoresSelect()"
+            type="select"
+            placeholder="Seleccionar grupo de valores"
+            (selectChanges)="getValores($event)"
+             class="consultaModal__select"
+        ></ui-select>
+    }
+    <!-- TEXTO PRINCIPAL CON RIESGO, FACTOR Y VALORES SELECCIONADOS -->
+    <span class="consultaModal__principal-text">
+      <div class="consultaModal__breadcrumb">
+        Riesgo: &nbsp;<div class="green">{{ riesgo().descripcionRiesgo }}</div>
+        &nbsp; - &nbsp;
+        Factor: &nbsp;<div class="green">{{ selectedFactor()?.descripcionFactor || '-' }}</div>
+      </div>
+      <div class="consultaModal__breadcrumb">
+        Valores: &nbsp;<div class="green">{{ valores() }}</div>
+      </div>
+    </span>
+  </div>
+
+  <div class="consultaModal__actions">
+    <ui-button
+      text="Cerrar"
+      additionalClasses="btn__primary xl"
+      (click)="cancel()"
+    ></ui-button>
+  </div>
+</div>

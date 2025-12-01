@@ -1,0 +1,121 @@
+<div class="detalle">
+
+    <h2>
+        Código Tarifa Base/Pura:
+        <span class="code-value">{{ codigo() }}</span>
+    </h2>
+
+    <!-- CAJA SUPERIOR -->
+    <div class="frame">
+
+        <ui-tabs [data]="['FACTORES', 'FACTORES POR PRECIO']">
+
+            <!-- TAB 1 -->
+            <ng-template tabContent title="FACTORES">
+
+                @if(loadedSimples()){
+
+                    <ui-tabs [data]="factoresSimplesTabs()">
+
+                        @for(f of factoresSimples(); track f.idFactorTarifa){
+
+                            <ng-template tabContent [title]="getTitle(f)">
+
+                                <div class="tags">
+
+                                    @for(v of f.grupoValores; track v.idGrupo){
+                                        <ui-tag 
+                                            [status]="0"
+                                            [text]="v.nombre"
+                                        />
+
+                                    }
+
+                                </div>
+
+                            </ng-template>
+
+                        }
+
+                    </ui-tabs>
+
+                }
+
+            </ng-template>
+
+
+            <!-- TAB 2 -->
+            <ng-template tabContent title="FACTORES POR PRECIO">
+
+                @if(loadedPrecio()){
+
+                    <ui-tabs [data]="factoresPrecioTabs()">
+
+                        @for(f of factoresPrecio(); track f.idFactorTarifa){
+
+                            <ng-template tabContent [title]="getTitle(f)">
+
+                                <div class="tags">
+                                    @for(v of f.grupoValores; track v.idGrupo){
+                                        <ui-tag 
+                                            [status]="0"
+                                            [text]="v.nombre"
+                                        />
+
+                                    }
+                                </div>
+
+                            </ng-template>
+
+                        }
+
+                    </ui-tabs>
+
+                }
+
+            </ng-template>
+
+        </ui-tabs>
+
+    </div>
+
+
+
+    <!-- CAJA INFERIOR -->
+    <div class="frame">
+
+        <ui-tabs [data]="['COEFICIENTES', 'LÍMITES']">
+
+        <ng-template tabContent title="COEFICIENTES">
+            
+            @if(loadedCoef()){
+                <div class="tags">
+
+                    @for(c of coeficientes(); track c.idCoeficienteLinea){
+                        <ui-tag
+                            [status]="0"
+                            [text]="c.nombreCoeficiente"
+                        />
+                    }
+
+                </div>
+            }
+
+        </ng-template>
+
+            <ng-template tabContent title="LÍMITES">
+                <!-- vacío -->
+            </ng-template>
+
+        </ui-tabs>
+
+    </div>
+
+
+    <ui-button
+        text="Cerrar"
+        additionalClasses="btn__primary--red xl"
+        (click)="cerrar()"
+    ></ui-button>
+
+</div>

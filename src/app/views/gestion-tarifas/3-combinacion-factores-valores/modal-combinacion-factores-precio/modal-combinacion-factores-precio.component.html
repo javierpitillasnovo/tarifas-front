@@ -1,0 +1,215 @@
+
+<div class="combinacion-factores-precio">
+
+	<div class="combinacion-factores-precio__breadcrumbs">
+		Grupo de Seguro: &nbsp;
+		<div class="green">{{ grupoSeguro().descripcion }}</div>
+		&nbsp; - &nbsp; Plan: &nbsp;
+		<div class="green">{{ plan() }}</div>
+		&nbsp; - &nbsp; Línea: &nbsp;
+		<div class="green">{{ linea().descripcion }}</div>
+		&nbsp; - &nbsp; Versión: &nbsp;
+		<div class="green">{{ version().version }}</div>
+		&nbsp; - &nbsp; Riesgo: &nbsp;
+		<div class="green">{{ riesgo().descripcionRiesgo }}</div>
+	</div>
+
+	<div class="combinacion-factores-precio__actions">
+		<ui-button
+			text="Importar"
+			additionalClasses="btn__secondary xl iFirst button-text"
+			icon="icon-upload"
+			(click)="openImportModal()"
+		></ui-button>
+
+		<ui-button
+			text="Modificar Prima"
+			additionalClasses="btn__secondary xl iFirst button-text"
+			icon="icon-edit"
+			(click)="modificarPrimaBase()"
+			[disabled]="!hasSelected()"
+		></ui-button>
+		<!-- Comentado hasta su desarrollo
+		<ui-button
+			text="Exportar"
+			additionalClasses="btn__secondary xl iFirst button-text"
+			icon="icon-download"
+		></ui-button>
+		-->
+	</div>
+
+	<!-- Comentado hasta su desarrollo
+
+	@if (isAmbitoSelected()) {
+		<div class="combinacion-factores-precio__titulo-ambito">
+			Ámbito
+		</div>
+    <div class="combinacion-factores-precio__combos">
+			<ui-select
+				[selectOptions]="provinciasSelectOptions()"
+				label="Provincia"
+				type="select"
+				placeholder="Provincia"
+				(selectChanges)="setProvincia($event)"
+				[value]="provinciaSetted().codigo"
+			>
+			</ui-select>
+
+			@defer (when provinciaIsSetted()) {
+				@if (comarcasSelectOptions().length >= 1) {
+					<ui-select
+						[selectOptions]="comarcasSelectOptions()"
+						label="Comarca"
+						type="select"
+						placeholder="Comarca"
+						(selectChanges)="setComarca($event)"
+						[value]="comarcaSetted().comarca"
+					>
+					</ui-select>
+				} @else if (onLoadComarcasError()) {
+					<span class="error"> Error al cargar las comarcas </span>
+				} @else {
+					<span class="placeholder">Cargando comarcas... </span>
+				}
+			}
+
+			@defer (when comarcaIsSetted()) {
+				@if (terminosSelectOptions().length >= 1) {
+					<ui-select
+						[selectOptions]="terminosSelectOptions()"
+						label="Término"
+						type="select"
+						placeholder="Término"
+						(selectChanges)="setTermino($event)"
+						[value]="terminoSetted().termino"
+					>
+					</ui-select>
+				} @else if (terminosSelectOptions().length == 0) {
+					<span class="error"> No hay términos </span>
+				}@else if (onLoadTerminosError()) {
+					<span class="error"> Error al cargar los términos </span>
+				} @else {
+					<span class="placeholder">Cargando términos... </span>
+				}
+			}
+
+			@defer (when terminoIsSetted()) {
+				@if (subterminosSelectOptions().length >= 1) {
+					<ui-select
+						[selectOptions]="subterminosSelectOptions()"
+						label="Subtérmino"
+						type="select"
+						placeholder="Subtérmino"
+						(selectChanges)="setSubtermino($event)"
+						[value]="subterminoSetted().termino"
+					>
+					</ui-select>
+				} @else if (subterminosSelectOptions().length == 0) {
+					<span class="error"> No hay subtérminos </span>
+				}@else if (onLoadSubterminosError()) {
+					<span class="error"> Error al cargar los subtérminos </span>
+				} @else {
+					<span class="placeholder">Cargando subtérminos... </span>
+				}
+			}
+
+			<ui-button
+				text="Filtrar"
+				additionalClasses="btn__primary xl button-text combinacion-factores-precio__button-filter"
+			></ui-button>
+
+		</div>
+	} @else if (onLoadProvinciasError()) {
+		<span class="error"> Error al cargar las provincias.</span>
+	} @else {
+		<span class="placeholder">Cargando provincias... </span>
+	}
+	-->
+
+	@defer (when combinacionesLoaded() && listCombinaciones()) {
+		<div class="combinacion-factores-precio__data">
+
+			<ui-table
+				[dataOriginal]="listCombinaciones()"
+				[filterId]="'id'"
+				[showAddButton]="showAddButton()"
+				[defaultActions]="'checkbox'"
+				[showPagination]="true"
+        [selectAllCheckbox]="true"
+				(itemSelected)="itemSelected($event)"
+				(itemAdd)="itemAdd()"
+			>
+
+				@if (valoreSetted()) {
+						@for (factor of listFactoresPrevios(); track factor.idFactorTarifa) {
+							<ng-template
+								tableColumn
+								header="{{ factor.descripcionFactor }}"
+								[headerIsVisible]="true"
+								let-item
+								style="width: 120px"
+								contentAlign="center"
+							>
+                @if (item.edited === true) {
+									<ui-select
+										placeholder="Valor"
+										[selectOptions]="getValoresOptions(factor, true)"
+										[value]="getValorValue(item,factor)"
+										(selectChanges)="setValorEnFactor($event, item, factor)"
+									></ui-select>
+								} @else {
+									{{ getNombreValue(item,factor) }}
+								}
+							</ng-template>
+						}
+				}
+
+				<ng-template
+					tableColumn
+					header="Prima Base"
+					[headerIsVisible]="true"
+					contentAlign="center"
+					let-item
+				>
+          @if(item.edited === true) {
+						<ui-input
+							placeholder="Nombre elegible"
+							[(value)]="item.primaBase"
+						></ui-input>
+					} @else {
+						{{ item.primaBase }}
+					}
+				</ng-template>
+        <ng-template tableColumn header="Eliminar" [headerIsVisible]="false"
+					let-item
+					contentAlign="center"
+				>
+          @if(item.edited === true) {
+						<i
+							class="icon-save"
+							(click)="saveCombinacion(item)"
+							(keydown.enter)="saveCombinacion(item)"
+							tabindex="0"
+						></i>
+						<i
+							class="icon-cross"
+							(click)="undoChanges(item)"
+							(keydown.enter)="undoChanges(item)"
+							tabindex="0"
+						></i>
+					} @else {
+            <i class="icon-edit" (click)="editCombinacion(item)" tabindex="0"></i>
+						<i
+							class="icon-trash"
+							(click)="deleteCombinacion(item)"
+							(keydown.enter)="deleteCombinacion(item)"
+							tabindex="0"
+						></i>
+					}
+				</ng-template>
+			</ui-table>
+		</div>
+	} @placeholder {
+		<span class="placeholder" [class.error]="onLoadError()">{{ placeholder() }}</span>
+	}
+</div>

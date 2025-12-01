@@ -1,0 +1,43 @@
+<div class="modal-edit">
+  <h2 class="titulo">{{ title() }}</h2>
+
+  <div class="contenido">
+    
+    <!-- RADIO CON COMPONENTE DE TU LIBRERÍA -->
+    <ui-radio
+      name="operaciones"
+      [options]="operacionesOptions"
+      [optionsLabels]="true"
+      [label]="'Operación'"
+      [required]="true"
+      (valueChange)="operacion.set($event)"
+    ></ui-radio>
+
+    <!-- INPUT DE VALOR -->
+    <div class="valor-input">
+     <span class="label-valor">Valor:</span>
+      <ui-input
+        placeholder="Valor"
+        type="number"
+        [value]="valor()"
+        (valueChange)="onValorChange($event)"
+      ></ui-input>
+    </div>
+
+  </div>
+
+  <div class="acciones">
+      <ui-button
+        text="CERRAR"
+        additionalClasses="btn__primary--red xl"
+        (click)="cerrar()"
+      ></ui-button>
+
+      <ui-button
+        text="GUARDAR"
+        additionalClasses="btn__primary xl green"
+        (click)="guardar()"
+      ></ui-button>
+  </div>
+
+</div>

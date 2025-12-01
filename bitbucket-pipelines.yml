@@ -1,0 +1,33 @@
+definitions:
+  services:
+    docker:
+      memory: 1024
+pipelines:
+  branches:
+    develop:
+      import: pipelines:frontend-2.0:features
+    master:
+      import: pipelines:frontend-2.0:production
+    release/*:
+      import: pipelines:frontend-2.0:releases
+    hotfix/*:
+      import: pipelines:frontend-2.0:releases
+  custom:
+    checkout_shared_library:
+      import: pipelines:frontend-2.0:checkout_shared_library
+    build_and_test:
+      import: pipelines:frontend-2.0:build_and_test
+    sonar:
+      import: pipelines:frontend-2.0:sonar
+    build_image:
+      import: pipelines:frontend-2.0:build_image
+    scan_image:
+      import: pipelines:frontend-2.0:scan_image
+    push_image:
+      import: pipelines:frontend-2.0:push_image
+    deploy_image:
+      import: pipelines:frontend-2.0:deploy_image
+    release_start:
+      import: pipelines:frontend-2.0:release_start
+    release_finish:
+      import: pipelines:frontend-2.0:release_finish

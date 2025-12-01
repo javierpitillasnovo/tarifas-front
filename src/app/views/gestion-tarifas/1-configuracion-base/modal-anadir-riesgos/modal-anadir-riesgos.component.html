@@ -1,0 +1,32 @@
+<div class="addModal">
+	<h2>{{ title }}</h2>
+
+	@defer (when leftListSetted() && rightListSetted()) {
+		@if (leftData().length >= 1) {
+			<ui-transfer-list
+				[leftData]="leftData()"
+				[rightData]="rightData()"
+				(listsChanges)="onListChanges($event)"
+			></ui-transfer-list>
+		} @else if (onLoadRiesgosError()) {
+			<span class="error"> Error al cargar los riesgos </span>
+		} @else if (onLoadRiesgosPreviosError()) {
+			<span class="error"> Error al cargar los riesgos previos </span>
+		}
+	} @placeholder {
+		<span class="placeholder">Cargando riesgos... </span>
+	}
+	<div class="addModal__actions">
+		<ui-button
+			text="Cancelar"
+			additionalClasses="btn__primary--red xl"
+			(click)="cancel()"
+		></ui-button>
+
+		<ui-button
+			text="Aceptar"
+			additionalClasses="btn__primary xl"
+			(click)="updateRiesgos()"
+		></ui-button>
+	</div>
+</div>

@@ -1,0 +1,89 @@
+@use 'variables' as *;
+@use 'base' as *;
+
+.definicion {
+	height: 85vh;
+	overflow: auto;
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 32px;
+	}
+
+	.title {
+		@include h5;
+		color: $color-primary-green;
+		text-align: center;
+		margin-bottom: 24px;
+		padding-top: 32px;
+	}
+
+	.content {
+		padding-left: 2rem;
+		padding-right: 2rem;
+		max-height: 60%;
+		width: 95%;
+		flex: 1 1 auto;
+		min-height: 0;
+
+		.cellContainer-text {
+			display: flex;
+			justify-content: flex-start;
+			width: 100%;
+		}
+	}
+	.icon-plus:before {
+		color: $color-primary-green;
+	}
+}
+
+:host ::ng-deep ui-button > button.btn.btn__primary.xl {
+	margin-top: 24px;
+	justify-self: center;
+}
+
+:host ::ng-deep tr {
+	transition: background 0.2s;
+}
+
+/* Sombrea la fila si el checkbox de desactivado está checked */
+:host ::ng-deep tr:has(td:first-child ui-checkbox[ng-reflect-checked='true']) {
+	background: $color-secondary-black-10 !important;
+	color: #fff !important;
+}
+
+/* Tooltip para celdas checked de agrícola o ganado en filas desactivadas */
+.tooltip-wrapper {
+	position: relative;
+	display: inline-block;
+}
+.tooltip-label {
+	visibility: hidden;
+	opacity: 0;
+	background: #222;
+	color: #fff;
+	text-align: center;
+	border-radius: 4px;
+	padding: 4px 8px;
+	position: absolute;
+	z-index: 10;
+	left: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+	white-space: nowrap;
+	font-size: 12px;
+	margin-left: 8px;
+	transition: opacity 0.2s;
+}
+.tooltip-wrapper:hover .tooltip-label {
+	visibility: visible;
+	opacity: 1;
+}
+
+.icon-plus.disabled {
+	pointer-events: none;
+	cursor: not-allowed;
+}

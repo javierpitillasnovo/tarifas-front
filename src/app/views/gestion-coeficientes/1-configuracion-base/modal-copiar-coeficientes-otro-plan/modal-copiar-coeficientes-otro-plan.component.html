@@ -1,0 +1,31 @@
+<div class="copiarCoeficientesModal">
+	<h2 class="copiarCoeficientesModal__title">Copiar Coeficientes de otro plan</h2>
+
+	<p class="copiarCoeficientesModal__subtitle">
+		Indique de qué plan quiere copiar los coeficientes.
+	</p>
+
+	<ui-select
+		[selectOptions]="planSelectOptions()"
+		type="select"
+		placeholder="Seleccionar plan"
+		(selectChanges)="onSelectPlan($event)"
+		class="copiarCoeficientesModal__select"
+	></ui-select>
+
+	<div class="copiarCoeficientesModal__actions">
+        <ui-button
+            text="Cancelar"
+            additionalClasses="btn__primary--red xl iFirst"
+            (click)="cancel()"
+        ></ui-button>
+
+        <ui-button
+            text="Aceptar"
+            additionalClasses="btn__primary xl"
+            [disabled]="!selectedPlan()"
+            (click)="accept()"
+        ></ui-button>
+    </div>
+
+</div>

@@ -1,0 +1,33 @@
+@use 'variables' as *;
+@use 'base' as *;
+
+.definicion-factores {
+	text-align: center;
+	.placeholder {
+		@include body-regular;
+		color: $color-primary-green;
+		&.error {
+			color: $color-primary-red;
+		}
+	}
+	
+	&__breadcrumbs {
+		font-family: 'FrutigerBold';
+		color: #1b1b1fa8;
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		font-size: 16px;
+		padding: 1rem 0;
+		.green {
+			color: $color-primary-green;
+		}
+	}
+
+	&__data {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		overflow-x: auto;
+	}
+}

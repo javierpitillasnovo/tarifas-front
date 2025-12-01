@@ -1,0 +1,30 @@
+<div class="modal-consulta-factor-deducible">
+	<h2 class="modal-consulta-factor-deducible__title">Consulta de Factores Deducibles</h2>
+	@defer (when listAllFactoresDeduciblesSelectLoaded()) {
+		<div class="modal-consulta-factor-deducible__text-container">
+			<ui-select
+				[selectOptions]="listAllFactoresDeduciblesSelect()"
+				type="select"
+				placeholder="Seleccionar"
+				(selectChanges)="getValores($event)"
+				class="modal-consulta-factor-deducible__select"
+				[value]="idFactorDeducible()"
+			>
+			</ui-select>
+			<span class="modal-consulta-factor-deducible__principal-text">
+				<div class="modal-consulta-factor-deducible__breadcrumb">
+					Factores: &nbsp;<div class="green">{{ valores()  }} </div>
+				</div> 
+			</span>
+		</div>
+	} @placeholder {
+		<span class="placeholder">Cargando Factores... </span>
+	}
+	<div class="modal-consulta-factor-deducible__actions">
+		<ui-button
+			text="Cerrar"
+			additionalClasses="btn__primary xl"
+			(click)="this.modalOutput.emit(true)"
+		></ui-button>
+	</div>
+</div>

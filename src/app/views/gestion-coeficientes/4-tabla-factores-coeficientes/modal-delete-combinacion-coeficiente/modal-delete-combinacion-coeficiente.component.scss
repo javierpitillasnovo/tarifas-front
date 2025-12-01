@@ -1,0 +1,53 @@
+@use 'variables' as *;
+@use 'base' as *;
+
+.deleteModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  h2 {
+    color: $color-primary-green;
+    @include h6;
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  &__text-container {
+    text-align: left;
+  }
+
+  &__principal-text {
+    color: #000;
+    text-align: center;
+    font-family: Frutiger;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+  }
+
+  &__secondary-text {
+    display: flex;
+    flex-direction: row;
+    color: #C1C1C1;
+    font-family: Frutiger;
+    font-size: 16px;
+    margin-top: 0.7rem;
+
+    .error {
+      color: $color-primary-red;
+      margin-right: 6px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px 50px;
+    gap: 50px;
+  }
+}

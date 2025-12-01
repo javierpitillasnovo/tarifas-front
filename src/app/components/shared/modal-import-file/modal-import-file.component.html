@@ -1,0 +1,30 @@
+<div class="importFileModal">
+	<h2 class="importFileModal__title">{{title()}}</h2>
+	<div class="importFileModal__text-container">
+		<span class="importFileModal__principal-text">{{subtitle()}}</span>
+		<span class="importFileModal__secondary-text"> 
+			<div class="error">*</div>
+			Esta acción no se puede deshacer 
+		</span>
+	</div>
+	
+	<ui-fileupload
+		(fileUploadChanges)="fileUploadChanges($event)">
+	</ui-fileupload>
+
+	<div class="importFileModal__actions">
+		<ui-button
+			text="Cancelar"
+			additionalClasses="btn__primary--red xl"
+			(click)="cancel()"
+		>
+		</ui-button>
+		<ui-button
+			text="Importar"
+			additionalClasses="btn__primary xl"
+			(click)="importar()"
+		>
+		</ui-button>
+	</div>
+
+</div>

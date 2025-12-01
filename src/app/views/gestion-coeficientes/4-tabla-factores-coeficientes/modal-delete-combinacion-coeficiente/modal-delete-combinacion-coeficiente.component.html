@@ -1,0 +1,28 @@
+<div class="deleteModal">
+  <h2 class="deleteModal__title">Eliminar combinación</h2>
+
+  <div class="deleteModal__text-container">
+    <span class="deleteModal__principal-text">
+      ¿Está seguro de que desea eliminar la combinación?
+    </span>
+
+    <span class="deleteModal__secondary-text">
+      <div class="error">*</div>
+      Esta acción no se puede deshacer.
+    </span>
+  </div>
+
+  <div class="deleteModal__actions">
+    <ui-button
+      text="Cancelar"
+      additionalClasses="btn__primary--red xl"
+      (click)="cancelar()">
+    </ui-button>
+
+    <ui-button
+      text="Eliminar"
+      additionalClasses="btn__primary xl"
+      (click)="confirmar()">
+    </ui-button>
+  </div>
+</div>

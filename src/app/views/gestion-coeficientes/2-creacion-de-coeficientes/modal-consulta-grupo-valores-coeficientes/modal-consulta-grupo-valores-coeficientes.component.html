@@ -1,0 +1,32 @@
+<div class="consultaModal">
+  <h2 class="consultaModal__title">Consulta de grupos de valores</h2>
+
+  <div class="consultaModal__text-container">
+    <ui-select
+      [selectOptions]="listAllGruposValoresSelect()"
+      type="select"
+      placeholder="Seleccionar grupo"
+      (selectChanges)="getValores($event)"
+      class="consultaModal__select"
+    ></ui-select>
+
+    <span class="consultaModal__principal-text">
+      <div class="consultaModal__breadcrumb">
+        Factor:&nbsp;
+        <div class="green">{{ factorCoeficiente().descripcionFactor }}</div>
+      </div>
+      <div class="consultaModal__breadcrumb">
+        Valores:&nbsp;
+        <div class="green">{{ valores() }}</div>
+      </div>
+    </span>
+  </div>
+
+  <div class="consultaModal__actions">
+    <ui-button
+      text="Cerrar"
+      additionalClasses="btn__primary xl"
+      (click)="cancel()"
+    ></ui-button>
+  </div>
+</div>

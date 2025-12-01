@@ -1,0 +1,27 @@
+<div class="editModal">
+  <h2 class="editModal__title">Editar Coeficiente</h2>
+
+  <div class="editModal__form">
+    <label>Nuevo nombre del coeficiente:</label>
+
+    <ui-input
+        placeholder="Nombre del coeficiente"
+        [value]="nombreEditado()"
+        (valueChange)="onNombreChange($event)"
+    ></ui-input>
+  </div>
+
+  <div class="editModal__actions">
+    <ui-button
+      text="Cancelar"
+      additionalClasses="btn__primary--red xl"
+      (click)="cancelar()"
+    ></ui-button>
+
+    <ui-button
+      text="Guardar"
+      additionalClasses="btn__primary xl"
+      (click)="guardar()"
+    ></ui-button>
+  </div>
+</div>

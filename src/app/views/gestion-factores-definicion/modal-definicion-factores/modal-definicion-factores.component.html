@@ -1,0 +1,31 @@
+<!-- TODO: refactorizar nombres de clases -->
+<p class="title">Consulta y edición de relación de factores</p>
+<form [formGroup]="form" class="factores__form">
+	<ui-select
+		formControlName="factor"
+		[error]="form.get('factor')?.invalid && form.get('factor')?.touched"
+		[selectOptions]="factorOptions()"
+		[required]="true"
+		label="Factor"
+		[width]="210"
+	>
+	</ui-select>
+</form>
+<div class="factores__content">
+	<ui-datagrid
+		filterId="idFactor"
+		[headers]="['Id', 'Nombre Factor', 'Parentesco']"
+		[dataOriginal]="factores().content"
+		[newItem]="nuevoFactor"
+		[fieldsToShow]="factoresFieldsToShow()"
+		[showAddButton]="!!form.get('factor')?.value && !hayFilaEditable()"
+		(itemAdd)="onAddFactor()"
+		(itemSave)="onSaveFactor($event)"
+		(itemDelete)="onDeleteFactor($event)"
+		(itemSelected)="onEditFactor($event)"
+		[showPagination]="paginacion().totalElements > 10"
+		[totalItems]="paginacion().totalElements"
+		[currentPage]="currentPage()"
+		(currentPageChange)="currentPage.set($event)"
+	></ui-datagrid>
+</div>

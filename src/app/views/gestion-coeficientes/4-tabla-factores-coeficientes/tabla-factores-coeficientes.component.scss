@@ -1,0 +1,58 @@
+@use 'variables' as *;
+@use 'base' as *;
+
+.tablaFactores {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	width: 100%;
+	padding: 20px 40px;
+
+	&__breadcrumb {
+		font-family: 'FrutigerBold';
+		color: #1b1b1fa8;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 6px;
+		font-size: 16px;
+
+		.green {
+			color: $color-primary-green;
+			font-weight: 600;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 4rem; // más espacio entre botones
+		width: 100%;
+		max-width: 1200px;
+		margin: 20px 0;
+
+		ui-button {
+			min-width: 220px;
+			text-align: center;
+		}
+	}
+
+	ui-datagrid {
+		width: 100%;
+		max-width: 1200px;
+		margin-top: 10px;
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: flex-end;
+		width: 100%;
+		max-width: 1200px;
+		margin-top: 24px;
+
+	}
+
+}

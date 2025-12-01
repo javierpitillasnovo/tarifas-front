@@ -1,0 +1,35 @@
+<div class="base__title">Gestión de Tarifas por Plan / Línea / Riesgo.</div>
+
+@if(isStep2()) {
+    <div class="base__breadcrumb">
+        Grupo de Seguro: &nbsp;<div class="green">{{ grupoSeguro().descripcion }} </div>
+        &nbsp; - &nbsp;
+        Plan: &nbsp;<div class="green">{{ plan() }}</div>
+        &nbsp; - &nbsp;
+        Línea: &nbsp;<div class="green">{{ linea().descripcion  }} </div>
+    </div>
+}
+
+<div class="content">
+    <ui-stepper [steps]="steps" [(buttonsDisabled)]="buttonsdisabled">
+        <ng-template stepContent [step]="1" let-item>
+            <app-configuracion-base (isComplete)="buttonsdisabled.set(!$event)"></app-configuracion-base>
+        </ng-template>
+        <ng-template stepContent [step]="2" let-item>
+            <app-definicion-factores 
+                (loaded)="loadedStep2($event)" 
+                (isComplete)="buttonsdisabled.set($event)"
+                (nextStep)="goToNextStep($event)" >
+            </app-definicion-factores>
+        </ng-template>
+        <ng-template stepContent [step]="3" let-item>
+            <app-combinacion-factores-valores (loaded)="loadedStep2($event)" (isComplete)="buttonsdisabled.set(!$event)"></app-combinacion-factores-valores>
+        </ng-template>
+        <ng-template stepContent [step]="4" let-item>
+            <app-consulta-riesgo-tarificado
+                (isComplete)="buttonsdisabled.set(!$event)">
+            </app-consulta-riesgo-tarificado>
+        </ng-template>
+    </ui-stepper>
+</div>
+

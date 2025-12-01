@@ -1,0 +1,71 @@
+@if (grupoSeguroSelectOptions().length >= 1) {
+	<div class="configuracion-base__combos">	
+		<ui-select
+			[selectOptions]="grupoSeguroSelectOptions()"
+			label="Grupo de seguro"
+			type="select"
+			placeholder="Grupo de seguro"
+			(selectChanges)="setGrupoSeguro($event)"
+			[value]="grupoSeguro().id"
+		>
+		</ui-select>
+
+		@defer (when grupoSeguroSetted() || isAllPreviousSetted()) {
+			@if (planSelectOptions().length >= 1) {
+				<ui-select
+					[selectOptions]="planSelectOptions()"
+					label="Plan"
+					type="select"
+					placeholder="Plan"
+					(selectChanges)="setPlan($event)"
+					[value]="plan()"
+				>
+				</ui-select>
+			} @else if (onLoadPlanError()) {
+				<span class="error"> Error al cargar los planes </span>
+			} @else {
+				<span class="placeholder">Cargando planes... </span>
+			}
+		}
+
+		@defer (when planSetted() || isAllPreviousSetted()) {
+			@if (lineaSelectOptions().length >= 1) {
+				<ui-select
+					[selectOptions]="lineaSelectOptions()"
+					label="Línea"
+					type="select"
+					placeholder="Línea"
+					(selectChanges)="setLinea($event)"
+					[value]="linea().id"
+				>
+				</ui-select>
+			} @else if (lineaSelectOptions().length == 0) {
+				<span class="error"> No hay lineas </span>
+			}@else if (onLoadLineasError()) {
+				<span class="error"> Error al cargar las líneas </span>
+			} @else {
+				<span class="placeholder">Cargando líneas... </span>
+			}
+		}
+
+	</div>
+} @else if (onLoadGrupoSeguroError()) {
+	<span class="error"> Error al cargar los grupos de seguro.</span>
+} @else {
+	<span class="placeholder">Cargando grupos de seguro... </span>
+}
+
+<div class="configuracion-base__actions">
+	<ui-button
+		text="Copiar de otro plan"
+		additionalClasses="btn__secondary xl iFirst button-text"
+		icon="icon-copy"
+	></ui-button>
+
+	<ui-button
+		[disabled]="!isAllPreviousSetted()"
+		text="Modificar riesgos del Plan/Linea"
+		additionalClasses="btn__secondary xl button-text"
+		(click)="anadirEliminarRiesgosModal()"
+	></ui-button>
+</div>

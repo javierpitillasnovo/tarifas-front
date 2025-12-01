@@ -1,0 +1,138 @@
+
+@defer (when combinacionesLoaded() && listCombinaciones()) {
+	<div class="combinacion-factores__breadcrumbs">
+		Grupo de Seguro:
+		<div class="green">{{ grupoSeguro().id }} - {{ grupoSeguro().descripcion }}</div>
+		&nbsp; - &nbsp; Plan:
+		<div class="green">{{ plan() }}</div>
+		&nbsp; - &nbsp; Línea:
+		<div class="green">{{ linea().descripcion }}</div>
+		&nbsp; - &nbsp; Versión: &nbsp;
+    	<div class="green">{{ version().version }}</div>
+	</div>
+}
+
+<div class="combinacion-factores">	
+	<div class="combinacion-factores__actions">
+		<ui-button
+			text="Consulta de grupos"
+			additionalClasses="btn__secondary xl iFirst button-text"
+			icon="icon-eye"
+			[disabled]="isConsultaDisabled()"
+			(click)="openConsultaGrupos()"
+		></ui-button>
+
+		<!-- Comentado hasta tener claro el funcionamiento de la exportación
+		<ui-button
+			text="Exportar"
+			additionalClasses="btn__secondary xl iFirst button-text"
+			icon="icon-download"
+		></ui-button>
+		-->
+	</div>
+
+	<div class="combinacion-factores__actions">
+		<ui-select
+			[selectOptions]="riesgoSelectOptions()"
+			label="Riesgo"
+			type="select"
+			placeholder="Riesgo"
+			(selectChanges)="setRiesgo($event)"
+			[value]="idPlanLineaRiesgoSetted()"
+		>
+		</ui-select>
+	</div>
+
+	@defer (when combinacionesLoaded() && listCombinaciones()) {
+		<div class="combinacion-factores__data">
+
+			<ui-table
+				[dataOriginal]="listCombinaciones()"
+				[filterId]="'id'"
+				[showAddButton]="showAddButton()"
+				[defaultActions]="'checkbox'"
+				[showPagination]="true"
+				(itemSelected)="itemSelected($event)"
+				(itemAdd)="itemAdd($event)"
+			>
+				<ng-template
+					tableColumn
+					header="Descripción Tarifa base/pura"
+					[headerIsVisible]="true"
+					contentAlign="center"
+					let-item
+				>
+					@if(item.selected === true) {
+						<ui-input
+							placeholder="Nombre elegible"
+							[(value)]="item.nombre"
+						></ui-input>
+					} @else {
+						{{ item.nombre }}
+					}
+				</ng-template>
+
+				@if (valoreSetted()) {
+						@for (factor of listFactoresPrevios(); track factor.idFactorTarifa) {
+							<ng-template
+								tableColumn
+								header="{{getDescripcionPorTipoFactor(factor) }}"
+								[headerIsVisible]="true"
+								let-item
+								style="width: 120px"
+							>
+								@if (item.selected === true) {
+									<!--si es deducible llamar a otro endpoint-->
+									<ui-select
+										placeholder="Valor"
+										[selectOptions]="getValoresOptions(factor)" 
+										[value]="getValorValue(item,factor)"
+										(selectChanges)="setValorEnFactor($event, item, factor)"
+									></ui-select>
+								} @else {
+									{{ getNombreValue(item,factor) }}
+								}
+							</ng-template>
+						}
+				}
+				
+				<ng-template tableColumn header="Primas" [headerIsVisible]="true" let-item>
+					@if(item.id !== 0){
+						<i
+							class="icon-search"
+							(click)="showPrimas(item)"
+							(keydown.enter)="showPrimas(item)"
+							tabindex="0"
+						></i>
+					}
+				</ng-template>
+				
+				<ng-template tableColumn header="Eliminar" [headerIsVisible]="false" let-item>
+					@if(item.selected === true) {
+						<i
+							class="icon-save"
+							(click)="saveCombinacion(item)"
+							(keydown.enter)="saveCombinacion(item)"
+							tabindex="0"
+						></i>
+						<i
+							class="icon-cross"
+							(click)="deleteCombinacion(item)"
+							(keydown.enter)="deleteCombinacion(item)"
+							tabindex="0"
+						></i>
+					} @else {
+						<i
+							class="icon-trash"
+							(click)="deleteCombinacion(item)"
+							(keydown.enter)="deleteCombinacion(item)"
+							tabindex="0"
+						></i>
+					}
+				</ng-template>
+			</ui-table>
+		</div>
+	} @placeholder {
+		<span class="placeholder" [class.error]="onLoadError()">{{ placeholder() }}</span>
+	}
+</div>

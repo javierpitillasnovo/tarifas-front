@@ -1,0 +1,88 @@
+<div class="creacionCoeficientes">
+	<div class="creacionCoeficientes__breadcrumb">
+		Grupo de Seguro:
+		<div class="green">{{ grupoSeguro().id }} - {{ grupoSeguro().descripcion }}</div>
+		&nbsp; - &nbsp; Plan:
+		<div class="green">{{ plan() }}</div>
+		&nbsp; - &nbsp; Línea:
+		<div class="green">{{ linea().descripcion }}</div>
+	</div>
+
+	<div class="creacionCoeficientes__actions">
+		<ui-button text="Seleccionar Factores" additionalClasses="btn__secondary xl iFirst button-text" icon="icon-add"
+			(click)="abrirModalSeleccionarFactores()"></ui-button>
+	</div>
+
+	@for (factor of listFactores(); track factor.idFactorCoeficiente) {
+	<ui-accordion [title]="getFactorTitle(factor)" [status]="0" [showIcon]="false"
+		class="creacionCoeficientes__accordion">
+		@if (factor.idFactor != FACTOR_AMBITO) {
+		<div class="creacionCoeficientes__actions-valores">
+			@if (factor.descripcionDeducible != '') {
+			<div class="creacionCoeficientes__actions">
+				<ui-button text="Descargar plantilla" additionalClasses="btn__secondary xl iFirst button-text"
+					icon="icon-download" (click)="getDataAndDownloadTemplate(factor)"></ui-button>
+
+				<ui-button text="Importar" additionalClasses="btn__secondary xl iFirst button-text" icon="icon-upload"
+					(click)="openImportModal(factor)"></ui-button>
+				<!-- Comentado hasta su desarrollo
+                                                        <ui-button
+                                                          text="Exportar"
+                                                          additionalClasses="btn__secondary xl iFirst button-text"
+                                                          icon="icon-download"
+                                                        ></ui-button>
+                                                        -->
+			</div>
+			} @else {
+			<ui-button text="Añadir grupo de valores" additionalClasses="btn__primary xl button-text"
+				(click)="anadirEditarGruposValoresFactoresModal(factor)"></ui-button>
+			}
+
+		</div>
+
+		@defer (when valoresSetted()) {
+		@if (factor.grupoValores && factor.grupoValores.length > 0) {
+		<ui-table [dataOriginal]="factor.grupoValores || []" [showAddButton]="false" [defaultActions]="false"
+			[showPagination]="true">
+			<ng-template tableColumn header="Nombre" [headerIsVisible]="true" let-valor>
+				@if (valor.valores?.length > 1) {
+				{{ valor.nombre }}
+				} @else {
+				{{ valor?.valores[0]?.idValor }} - {{ valor.nombre }}
+				}
+			</ng-template>
+
+			<ng-template tableColumn header="Tipo" [headerIsVisible]="true" let-valor>
+				{{ valor.valores?.length > 1 ? 'Grupo' : 'Individual' }}
+			</ng-template>
+
+			<ng-template tableColumn header="Ver" [headerIsVisible]="false" let-valor>
+				@if (valor.valores?.length > 1) {
+				<i class="icon-eye" (click)="consultarGruposValoresModal(factor)"></i>
+				}
+			</ng-template>
+			@if (!factor.idDeducible) {
+			<ng-template tableColumn header="Editar" [headerIsVisible]="false" let-valor>
+				<i class="icon-edit" (click)="editarGrupoValoresModal(factor, valor)" tabindex="0"></i>
+			</ng-template>
+
+			<ng-template tableColumn header="Eliminar" [headerIsVisible]="false" let-valor>
+				<i class="icon-trash" (click)="deleteValorFactor(factor, valor)" tabindex="0"></i>
+			</ng-template>
+			}
+		</ui-table>
+		} @else {
+		@if (!factor.idDeducible) {
+		<div class="creacionCoeficientes__no-data">No hay grupos de valores.</div>
+		}
+		}
+		} @placeholder {
+		<span class="placeholder">Cargando grupos de valores...</span>
+		}
+		} @else {
+		<span class="placeholder">No se puede gestionar los grupo de valores para el ambito en esta sección.</span>
+		}
+	</ui-accordion>
+	}
+
+</div>

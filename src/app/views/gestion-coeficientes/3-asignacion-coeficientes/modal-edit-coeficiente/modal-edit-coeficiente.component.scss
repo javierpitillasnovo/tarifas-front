@@ -1,0 +1,36 @@
+@use 'variables' as *;
+@use 'base' as *;
+
+.editModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  &__title {
+    color: $color-primary-green;
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-family: FrutigerBold;
+  }
+
+  &__form {
+    width: 100%;
+    text-align: left;
+    margin-top: 8px;
+
+    label {
+      font-family: Frutiger;
+      font-size: 16px;
+      margin-bottom: 4px;
+      display: block;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+  }
+}

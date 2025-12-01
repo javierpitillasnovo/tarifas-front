@@ -1,0 +1,59 @@
+<!-- TITULO SEGÚN STEP -->
+@if (currentStep() === 0) {
+  <div class="base__title">Gestión de Coeficientes</div>
+}
+@if (currentStep() === 1) {
+  <div class="base__title">Gestión de Coeficientes - Selección de factores</div>
+}
+@if (currentStep() === 2) {
+  <div class="base__title">Creación de Coeficientes por plan/línea</div>
+}
+
+<!-- PASOS CONTROLADOS POR STEPPER (0,1,2) -->
+@if (currentStep() !== 3) {
+
+  <div class="stepper-wrapper">
+    <ui-stepper
+      [steps]="steps"
+      [(buttonsDisabled)]="stepperButtonsDisabled"
+      #stepper
+    >
+      <!-- STEP 0 -->
+      <ng-template stepContent [step]="1">
+        <app-configuracion-base
+          (onCreate)="goToStep(1)"
+          (isComplete)="stepperButtonsDisabled.set(!$event)"
+          (isStepValid)="stepperButtonsDisabled.set(!$event)"
+        ></app-configuracion-base>
+      </ng-template>
+
+      <!-- STEP 1 -->
+      <ng-template stepContent [step]="2">
+        <app-creacion-de-coeficientes
+          (isStepValid)="stepperButtonsDisabled.set(!$event)"
+          (onNext)="stepper.next()"
+          (onBack)="stepper.prev()"
+        ></app-creacion-de-coeficientes>
+      </ng-template>
+
+      <!-- STEP 2 -->
+      <ng-template stepContent [step]="3">
+        <app-asignacion-coeficientes
+          (onBack)="stepper?.prev()"
+          (onNext)="navigateToTablaFactores()"
+          (isComplete)="stepperButtonsDisabled.set(!$event)"
+        ></app-asignacion-coeficientes>
+      </ng-template>
+
+    </ui-stepper>
+  </div>
+}
+
+
+<!-- PASO 3 - FUERA DEL STEPPER -->
+@if (currentStep() === 3) {
+  <div class="base__title">Gestión de Coeficientes - Asignación</div>
+  <app-tabla-factores-coeficientes
+    (onBack)="navigateToStep3()"
+  ></app-tabla-factores-coeficientes>
+}

@@ -1,0 +1,52 @@
+<div class="modal-gestion">
+	<p class="title">Configuración de Factores</p>
+	<form [formGroup]="form" class="modal-gestion__form">
+		<ui-select
+			formControlName="linea"
+			[selectOptions]="lineasOptions()"
+			label="Línea"
+			placeholder="Línea"
+			[required]="true"
+		></ui-select>
+		<div class="content">
+			<ui-table
+				title="Configuración de factores"
+				[dataOriginal]="paginatedFactoresAsignados()"
+				[filterId]="'idFactor'"
+				[showAddButton]="false"
+				[defaultActions]="false"
+				[showPagination]="false"
+			>
+				<ng-template tableColumn header="Nombre Factor" [headerIsVisible]="true" let-item>
+					<div class="cellContainer-text">{{ item.idFactor ? item.idFactor : 'Deducible' }} - {{ item.descripcionFactor }}</div>
+				</ng-template>
+
+				<ng-template tableColumn header="Factor simple" [headerIsVisible]="true" let-item>
+					<ui-checkbox
+						[checked]="item.simple"
+						(checkboxChanges)="onCheckboxChange(item, 'simple', getCheckedValueFromEvent($event))"
+					></ui-checkbox>
+				</ng-template>
+
+				<ng-template tableColumn header="Factor de precio" [headerIsVisible]="true" let-item>
+					<ui-checkbox
+						[checked]="item.precio"
+						(checkboxChanges)="onCheckboxChange(item, 'precio', getCheckedValueFromEvent($event))"
+					></ui-checkbox>
+				</ng-template>
+			</ui-table>
+		</div>
+		<ui-pagination
+			[items]="factoresAsignados().length"
+			[totalItems]="factoresAsignados().length"
+			(paginationAction)="actualizarPagina($event)"
+		></ui-pagination>
+
+		<ui-button
+			text="Guardar"
+			additionalClasses="btn__primary xl"
+			[disabled]="!form.valid"
+			(click)="guardarConfiguracion()"
+		></ui-button>
+	</form>
+</div>

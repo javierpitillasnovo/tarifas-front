@@ -1,0 +1,27 @@
+<div class="deleteModal">
+  <h2 class="deleteModal__title">Eliminar Grupo de Valores</h2>
+
+  <div class="deleteModal__text-container">
+    <span class="deleteModal__principal-text">
+      ¿Está seguro de eliminar el grupo <strong>{{ valor().nombre }}</strong>?
+    </span>
+    <span class="deleteModal__secondary-text">
+      <div class="error">*</div>
+      Esta acción no se puede deshacer.
+    </span>
+  </div>
+
+  <div class="deleteModal__actions">
+    <ui-button
+      text="Cancelar"
+      additionalClasses="btn__primary--red xl"
+      (click)="cancel()"
+    ></ui-button>
+
+    <ui-button
+      text="Eliminar"
+      additionalClasses="btn__primary xl"
+      (click)="deleteValor()"
+    ></ui-button>
+  </div>
+</div>

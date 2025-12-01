@@ -1,0 +1,31 @@
+@use 'variables' as *;
+@use 'base' as *;
+
+.base {
+	padding: 52px;
+	display: flex;
+	flex-direction: column;
+	gap: 36px;
+	flex: 1;
+
+	&__title {
+		@include h5;
+		color: $color-primary-green;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 52px;
+	}
+}
+
+.green {
+	color: $color-primary-green;
+}
+
+.content {
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
+.stepper-wrapper {
+  padding-right: 3rem;
+}

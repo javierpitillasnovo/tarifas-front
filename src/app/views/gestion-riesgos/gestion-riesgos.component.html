@@ -1,0 +1,30 @@
+<p class="title">Gestión de Riesgos</p>
+<form [formGroup]="form" class="riesgos__form">
+	<ui-select
+		formControlName="grupoSeguro"
+		[error]="form.get('grupoSeguro')?.invalid && form.get('grupoSeguro')?.touched"
+		[selectOptions]="grupoSeguroOptions()"
+		[required]="true"
+		label="Grupo de seguro"
+		[width]="210"
+	>
+	</ui-select>
+</form>
+<div class="riesgos__content">
+	<ui-datagrid
+		filterId="codigoRiesgo"
+		[headers]="['Código de Riesgo', 'Descripción del Riesgo']"
+		[dataOriginal]="riesgos()"
+		[newItem]="nuevoRiesgo"
+		[fieldsToShow]="riesgosFieldsToShow()"
+		(itemAdd)="onAddRiesgo()"
+		(itemSave)="onSaveRiesgo($event)"
+		(itemDelete)="onDeleteRiesgo($event)"
+		[showAddButton]="!!form.get('grupoSeguro')?.value && !hayFilaEditable()"
+		[showPagination]="paginacion().totalElements > 10"
+		[totalItems]="paginacion().totalElements"
+		[currentPage]="currentPage()"
+		(currentPageChange)="currentPage.set($event)"
+		(paginationAction)="getRiesgosPorGrupo($event)"
+	></ui-datagrid>
+</div>

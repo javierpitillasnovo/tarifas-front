@@ -1,0 +1,49 @@
+<div class="modalValores">
+  <h2>Crear Grupo de valores al factor {{ factorCoeficiente().descripcionFactor }}</h2>
+
+  <form [formGroup]="nameForm">
+    <ui-input
+      formControlName="name"
+      [error]="nameForm.get('name')?.invalid && nameForm.get('name')?.touched"
+      label="Nombre del Grupo"
+      [required]="true"
+    ></ui-input>
+  </form>
+
+  <div class="modalValores__text-container">
+    <span class="modalValores__principal-text">
+      Añade los valores del factor {{ factorCoeficiente().descripcionFactor }} para crear el grupo de valores
+    </span>
+  </div>
+
+  @defer (when leftListSetted()) {
+    @if (leftData().length > 0) {
+      <ui-transfer-list
+        [leftData]="leftData()"
+        [rightData]="rightData()"
+        (listsChanges)="onListChanges($event)"
+      ></ui-transfer-list>
+    } @else if (onLoadValoresError()) {
+      <span class="error">Error al cargar los valores del factor.</span>
+    } @else {
+      <span class="error">No existen valores para este factor.</span>
+    }
+  } @placeholder {
+    <span class="placeholder">Cargando valores...</span>
+  }
+
+  <div class="modalValores__actions">
+    <ui-button
+      text="Cancelar"
+      additionalClasses="btn__primary--red xl"
+      (click)="cancel()"
+    ></ui-button>
+
+    <ui-button
+      [text]="editMode() ? 'Actualizar Grupo' : 'Crear Grupo'"
+      additionalClasses="btn__primary xl"
+      [disabled]="buttonDisabled()"
+      (click)="editMode() ? updateGrupoValoresExistente() : createGruposValores()"
+    ></ui-button>
+  </div>
+</div>

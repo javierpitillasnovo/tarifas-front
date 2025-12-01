@@ -1,0 +1,33 @@
+<div class="addModal">
+	<h2>{{ title }}</h2>
+
+	@defer (when leftListSetted() && rightListSetted()) {
+		@if (leftData().length >= 0) {
+			<ui-transfer-list
+				[leftData]="leftData()"
+				[rightData]="rightData()"
+				(listsChanges)="onListChanges($event)"
+			></ui-transfer-list>
+		} @else if (onLoadFactoresError()) {
+			<span class="error"> Error al cargar los factores </span>
+		} @else if (onLoadFactoresPreviosError()) {
+			<span class="error"> Error al cargar los factores previos </span>
+		}
+	} @placeholder {
+		<span class="placeholder">Cargando factores... </span>
+	}
+	<div class="addModal__actions">
+		<ui-button
+			text="Cancelar"
+			additionalClasses="btn__primary--red xl"
+			(click)="cancel()"
+		></ui-button>
+
+		<ui-button
+			text="Aceptar"
+			additionalClasses="btn__primary xl"
+			[disabled]="buttonDisabled()"
+			(click)="updateFactores()"
+		></ui-button>
+	</div>
+</div>

@@ -1,0 +1,85 @@
+<div class="tablaFactores">
+  <!-- Miga de pan -->
+  <div class="tablaFactores__breadcrumb">
+    Grupo de Seguro:
+    <div class="green">{{ grupoSeguro().id }} - {{ grupoSeguro().descripcion }}</div>
+    &nbsp; - &nbsp; Plan:
+    <div class="green">{{ plan() }}</div>
+    &nbsp; - &nbsp; Línea:
+    <div class="green">{{ linea().descripcion }}</div>
+    &nbsp; - &nbsp; Coeficiente:
+    <div class="green">{{ nombreCoeficiente() }}</div>
+    </div>
+
+  <!-- Botones -->
+  <div class="tablaFactores__actions">
+    <ui-button text="Importar" additionalClasses="btn__secondary xl button-text" icon="icon-upload"
+      (click)="openImportModal()"></ui-button>
+
+    <ui-button text="Consulta de grupos" additionalClasses="btn__secondary xl button-text" icon="icon-eye"
+      (click)="consultarGrupos()"></ui-button>
+
+    <ui-button text="Modificar Coeficiente" additionalClasses="btn__secondary xl button-text" icon="icon-edit"
+      (click)="modificarCoeficiente()" [disabled]="!hasSelected()"></ui-button>
+  </div>
+
+  <!-- Tabla -->
+  @defer (when factoresLoaded() && combinacionesLoaded()) {
+  <div class="tablaFactores__data">
+    <ui-table [dataOriginal]="listCombinaciones()" [filterId]="'id'" [showAddButton]="showAddButton()"
+      [defaultActions]="'checkbox'" [selectAllCheckbox]="true" [showPagination]="true" (itemAdd)="itemAdd()" (itemSelected)="itemSelected($event)">
+      <!-- Columnas dinámicas por factor -->
+      @for (factor of listFactoresCoeficiente(); track factor.idFactorCoeficiente) {
+      <ng-template tableColumn header="{{ factor.descripcionFactor || factor.descripcionDeducible }}" [headerIsVisible]="true"
+        let-item style="width: 120px">
+        @if (item.edited === true) {
+        <!-- SIN grupos -->
+        @if (!factor.gruposValores || factor.gruposValores.length === 0) {
+        <ui-input placeholder="Valor" [disabled]="true"></ui-input>
+        } @else {
+        <!-- CON grupos -->
+        <ui-select placeholder="Valor" [selectOptions]="getSelectOptionsConVacio(factor)" [value]="getValorValue(item, factor)"
+          (selectChanges)="setValorEnFactor($event, item, factor)"></ui-select>
+        }
+        } @else {
+        {{ getNombreValue(item, factor) }}
+        }
+        </ng-template>
+        }
+
+        <!-- Columna coeficiente -->
+        <ng-template tableColumn header="Coeficiente" [headerIsVisible]="true" let-item>
+          @if (item.edited === true) {
+          <ui-input placeholder="Coeficiente" [(value)]="item.coeficiente"></ui-input>
+          } @else {
+            {{ item.coeficiente }}
+            }
+            </ng-template>
+
+        <!-- Columna Acciones -->
+        <ng-template tableColumn header="Acciones" [headerIsVisible]="false" let-item>
+          @if (item.edited === true) {
+          <i class="icon-save" (click)="item.idCombinacion === '0' ? saveCombinacion(item) : updateCombinacion(item)"
+            tabindex="0"></i>
+          <i class="icon-cross" (click)="undoChanges(item)" (keydown.enter)="undoChanges(item)" tabindex="0"></i>
+          } @else {
+          <i
+							class="icon-edit"
+							(click)="editCombinacion(item)"
+							tabindex="0"
+						></i>
+            <i class="icon-trash" (click)="deleteCombinacion(item)" (keydown.enter)="deleteCombinacion(item)" tabindex="0"></i>
+            }
+            </ng-template>
+            </ui-table>
+            </div>
+            } @placeholder {
+            <span class="placeholder">Cargando datos de coeficientes...</span>
+            }
+
+  <!-- Footer -->
+  <div class="tablaFactores__footer">
+    <ui-button text="Anterior" additionalClasses="btn__primary--red xl iFirst" icon="icon-arrow-left"
+      (click)="goPrev()"></ui-button>
+  </div>
+</div>

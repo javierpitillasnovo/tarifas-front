@@ -1,0 +1,50 @@
+<div class="modalValores">
+	<h2>{{editGrupo()?'Actualizar':'Crear'}} Grupo de valores al factor {{this.factorTarifa().descripcionFactor}}</h2>
+
+	<form [formGroup]="nameForm">
+		<ui-input
+			formControlName="name"
+			[error]="nameForm.get('name')?.invalid && nameForm.get('name')?.touched"
+			label="Nombre del Grupo"
+			[required]="true"
+		></ui-input>
+	</form>
+
+	<div class="modalValores__text-container">
+		<span class="modalValores__principal-text"> 
+			Añade los valores del factor {{this.factorTarifa().descripcionFactor}} para  {{editGrupo()?'actualizar':'crear'}} el grupo de valores
+		</span>
+	</div>
+
+	@defer (when leftListSetted()) {
+		@if (leftData().length >= 1) {
+			<ui-transfer-list
+				[leftData]="leftData()"
+				[rightData]="rightData()"
+				(listsChanges)="onListChanges($event)"
+			></ui-transfer-list>
+		} @else if (leftData().length === 0) {
+			<span class="error"> No existen grupos de valores para este factor</span>
+		} @else if (onLoadGruposValoresError()) {
+			<span class="error"> Error al cargar los grupos de valores </span>
+		} @else if (onLoadGruposValoresPreviosError()) {
+			<span class="error"> Error al cargar los grupos de valores previos </span>
+		}
+	} @placeholder {
+		<span class="placeholder">Cargando grupos de valores... </span>
+	}
+	<div class="modalValores__actions">
+		<ui-button
+			text="Cancelar"
+			additionalClasses="btn__primary--red xl"
+			(click)="cancel()"
+		></ui-button>
+
+		<ui-button
+			text="{{editGrupo()?'Actualizar':'Crear'}} Grupo"
+			additionalClasses="btn__primary xl"
+			[disabled]="buttonDisabled()"
+			(click)="saveOrUpdateGruposValores()"
+		></ui-button>
+	</div>
+</div>

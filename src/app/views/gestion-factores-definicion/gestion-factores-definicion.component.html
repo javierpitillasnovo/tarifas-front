@@ -1,0 +1,112 @@
+<div class="definicion">
+	<p class="title">Definición de relaciones entre Factores</p>
+	<div class="content">
+		<ui-table
+			[dataOriginal]="factoresAsignados()"
+			[filterId]="'idFactor'"
+			[showAddButton]="false"
+			[defaultActions]="false"
+			[showPagination]="true"
+			[totalItems]="totalItems()"
+			(paginationAction)="obtenerFactores($event)"
+		>
+			<ng-template 
+				tableColumn 
+				header="Nombre Factor" 
+				contentAlign="center" 
+				[headerIsVisible]="true" 
+				let-item
+			>
+				<div class="cellContainer-text">{{ item.idFactor ? item.idFactor : 'Deducible' }} - {{ item.descripcionFactor }}</div>
+			</ng-template>
+
+			<ng-template 
+				tableColumn 
+				header="Tipo Factor" 
+				contentAlign="center" 
+				[headerIsVisible]="true" 
+				let-item
+			>
+				<ui-tag 
+					[status]="item.idFactor ? STATUS_TAG_AGRO : STATUS_TAG_DEDUCIBLE" 
+					[text]="item.idFactor ? TEXT_TAG_AGRO : TEXT_TAG_DEDUCIBLE" 
+					[icon]="false">
+				</ui-tag>
+			</ng-template>
+
+			<ng-template tableColumn header="Agrícola" [headerIsVisible]="true" let-item>
+				@if (item.desactivado) {
+					<span class="tooltip-wrapper">
+						<ui-checkbox
+							[checked]="item.agricola"
+							(checkboxChanges)="
+								onCheckboxChange(item, 'agricola', getCheckedValueFromEvent($event))
+							"
+							[disabled]="item.desactivado"
+						></ui-checkbox>
+						<span class="tooltip-label">Factor desactivado</span>
+					</span>
+				} @else {
+					<ui-checkbox
+						[checked]="item.agricola"
+						(checkboxChanges)="onCheckboxChange(item, 'agricola', getCheckedValueFromEvent($event))"
+						[disabled]="item.desactivado"
+					></ui-checkbox>
+				}
+			</ng-template>
+
+			<ng-template tableColumn header="Ganado" [headerIsVisible]="true" let-item>
+				@if (item.desactivado) {
+					<span class="tooltip-wrapper">
+						<ui-checkbox
+							[checked]="item.ganado"
+							(checkboxChanges)="onCheckboxChange(item, 'ganado', getCheckedValueFromEvent($event))"
+							[disabled]="item.desactivado"
+						></ui-checkbox>
+						<span class="tooltip-label">Factor desactivado</span>
+					</span>
+				} @else {
+					<ui-checkbox
+						[checked]="item.ganado"
+						(checkboxChanges)="onCheckboxChange(item, 'ganado', getCheckedValueFromEvent($event))"
+						[disabled]="item.desactivado"
+					></ui-checkbox>
+				}
+			</ng-template>
+			<!--
+			<ng-template tableColumn header="Relación" [headerIsVisible]="true" let-item>
+				@if (item.relacionado) {
+					<i
+						class="icon-eye"
+						tabindex="0"
+						role="button"
+						aria-label="Ver factores relacionados"
+						(click)="abrirModalFactores(item)"
+						(keydown.enter)="abrirModalFactores(item)"
+					></i>
+				} @else {
+					<span class="tooltip-wrapper">
+						<i
+							class="icon-plus"
+							tabindex="0"
+							[class.disabled]="item.desactivado"
+							[attr.aria-disabled]="item.desactivado ? true : null"
+							[attr.tabindex]="item.desactivado ? -1 : 0"
+							(click)="!item.desactivado && abrirModalFactores(item)"
+							(keydown.enter)="!item.desactivado && abrirModalFactores(item)"
+							aria-label="Agregar factor"
+							role="button"
+						></i>
+						<span *ngIf="item.desactivado" class="tooltip-label">Factor desactivado</span>
+					</span>
+				}
+			</ng-template>-->
+		</ui-table>
+		<ui-button
+			text="Guardar"
+			additionalClasses="btn__primary xl"
+			[disabled]="!guardarHabilitado()"
+			(click)="guardarCambiosGruposSeguro()"
+		></ui-button>
+	</div>
+</div>

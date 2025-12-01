@@ -1,0 +1,56 @@
+<p class="configuracion-factores-deducibles__title">Configuración de Factores Deducibles</p>
+<div class="configuracion-factores-deducibles__actions">
+	<ui-button
+		text="Importar"
+		additionalClasses="btn__secondary xl iFirst button-text"
+		icon="icon-upload"
+	></ui-button>
+
+	<ui-button
+		text="Exportar"
+		additionalClasses="btn__secondary xl iFirst button-text"
+		icon="icon-download"
+	></ui-button>
+</div>
+
+
+<div class="configuracion-factores-deducibles__content">
+	<ui-table
+		[dataOriginal]="listFactoresDeducibles() || []"
+		[showAddButton]="false"
+		[defaultActions]="false"
+		[showPagination]="true"
+		[showAddButton]="true"
+		(itemAdd)="crearFactorDeducibleModal($event)"
+	>
+		<ng-template tableColumn header="Nombre" [headerIsVisible]="true" let-factor>
+			{{ factor.nombre }}
+		</ng-template>
+
+		<ng-template tableColumn header="Ver" [headerIsVisible]="false" let-factor>
+			<i 
+				class="icon-eye" 
+				(click)="consultarFactorDeducibleModal(factor)"
+				(keydown.enter)="consultarFactorDeducibleModal(factor)"
+			></i>
+		</ng-template>
+
+		<ng-template tableColumn header="Editar" [headerIsVisible]="false" let-factor>
+			<i
+				class="icon-edit"
+				(click)="editarFactorDeducibleModal(factor)"
+				(keydown.enter)="editarFactorDeducibleModal(factor)"
+				tabindex="0"
+			></i>
+		</ng-template>
+
+		<ng-template tableColumn header="Eliminar" [headerIsVisible]="false" let-factor>
+			<i
+				class="icon-trash"
+				(click)="deleteFactorDeducible(factor)"
+				(keydown.enter)="deleteFactorDeducible(factor)"
+				tabindex="0"
+			></i>
+		</ng-template>
+	</ui-table>
+</div>

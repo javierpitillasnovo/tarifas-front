@@ -1,0 +1,97 @@
+@use 'variables' as *;
+@use 'base' as *;
+.consultaModal {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	h2 {
+		color: $color-primary-green;
+		@include h6;
+		font-size: 24px;
+		margin-bottom: 12px;
+	}
+
+	&__actions {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		padding-left: 50px;
+		padding-right: 50px;
+		gap: 50px;
+	}
+
+	&__principal-text{
+		color: #000;
+		text-align: center;
+		font-family: Frutiger;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 160%; 
+	}
+
+	&__text-container{
+		text-align: left; 
+	}
+
+	&__secondary-text{
+		display: flex;
+		flex-direction: row;
+		color: var(--Gris, #C1C1C1);
+		font-family: Frutiger;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 160%;
+		margin-top: 0.7rem;
+	}
+
+	&__breadcrumb {
+		font-family: "FrutigerBold";
+		color: #1B1B1FA8;
+		font-size: 14px;
+		font-weight: 400;
+		font-style: normal;
+		line-height: 160%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+        padding-top: 12px;
+		padding-left: 52px;
+		padding-right: 52px;
+	}
+
+	&__select{
+		width: fit-content;
+		position: relative;
+		left: 25%;
+	}
+
+	.green{
+		color: $color-primary-green;
+	}
+
+	.placeholder {
+		@include body-regular;
+		color: $color-primary-green;
+	}
+
+	.error {
+		@include body-regular;
+		color: $color-primary-red;
+	}
+
+	//Temporary fix for the transfer list component
+	::ng-deep {
+		.transferList__box{
+				max-height: 150px;
+				overflow: auto;
+			}
+	}
+}
+
+

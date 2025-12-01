@@ -1,0 +1,28 @@
+<div class="addModal">
+	<h2>Añadir coeficientes</h2>
+
+	@if(loading()){
+		<span class="placeholder">Cargando coeficientes...</span>
+	} @else {
+		<ui-transfer-list
+			[leftData]="leftData()"
+			[rightData]="rightData()"
+			(listsChanges)="onListsChanges($event)"
+		></ui-transfer-list>
+	}
+
+	<div class="addModal__actions">
+		<ui-button
+			text="Cancelar"
+			additionalClasses="btn__primary--red xl"
+			(click)="cancel()"
+		/>
+
+		<ui-button
+			text="Aplicar"
+			additionalClasses="btn__primary xl"
+			(click)="apply()"
+		/>
+	</div>
+
+</div>

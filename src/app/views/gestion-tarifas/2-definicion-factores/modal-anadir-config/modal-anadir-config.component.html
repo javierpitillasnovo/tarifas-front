@@ -1,0 +1,17 @@
+<div class="addModal">
+	<h2>Crear nueva versión</h2>
+	<form [formGroup]="versionForm">
+		<ui-input
+			formControlName="version"
+			[error]="versionForm.get('version')?.invalid && versionForm.get('version')?.touched"
+			label="Versión"
+			[required]="true"
+		></ui-input>
+	</form>
+	<ui-button
+		text="Crear nueva versión"
+		additionalClasses="btn__primary xl"
+		[disabled]="versionForm.invalid"
+		(click)="addVersion()"
+	></ui-button>
+</div>

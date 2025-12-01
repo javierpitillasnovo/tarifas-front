@@ -1,0 +1,21 @@
+<p class="title">Configuración de Factores y Deducibles por Grupo de Seguro</p>
+<form [formGroup]="form" class="factores__form">
+	<ui-select
+		formControlName="grupoSeguro"
+		[error]="form.get('grupoSeguro')?.invalid && form.get('grupoSeguro')?.touched"
+		[selectOptions]="grupoSeguroOptions()"
+		[required]="true"
+		label="Grupo de seguro"
+	>
+	</ui-select>
+	<div class="factores__form--buttons">
+		<!-- Botón: abrir modal de factores -->
+		<ui-button
+			type="submit"
+			text="Configurar Factores"
+			additionalClasses="btn__primary xl"
+			[disabled]="!form.valid"
+			(click)="abrirModalFactores()"
+		></ui-button>
+	</div>
+</form>

@@ -1,0 +1,53 @@
+<div class="modal-anadir-factor-deducible">
+	<h2>{{edit()?'Actualizar':'Crear'}} Factor deducible</h2>
+
+
+	<form [formGroup]="nameForm">
+		<ui-input
+			formControlName="name"
+			[error]="nameForm.get('name')?.invalid && nameForm.get('name')?.touched"
+			label="Nombre del Factor"
+			[required]="true"
+		></ui-input>
+	</form>
+
+	<div class="modal-anadir-factor-deducible__text-container">
+		<span class="modal-anadir-factor-deducible__principal-text"> 
+			Añade los factores simples para {{edit()?'actualizar':'crear'}} el factor deducible
+		</span>
+	</div>
+
+	
+	@defer (when leftListSetted()) {
+		@if (leftData().length >= 1) {
+			<ui-transfer-list
+				[leftData]="leftData()"
+				[rightData]="rightData()"
+				(listsChanges)="onListChanges($event)"
+				[editOrder]="true" 
+			></ui-transfer-list>
+		} @else if (leftData().length === 0) {
+			<span class="error"> No existen factores simples</span>
+		} @else if (onLoadFactoresError()) {
+			<span class="error"> Error al cargar los factores </span>
+		} @else if (onLoadFactoresPreviosError()) {
+			<span class="error"> Error al cargar los factores </span>
+		}
+	} @placeholder {
+		<span class="placeholder">Cargando factores... </span>
+	}
+	<div class="modal-anadir-factor-deducible__actions">
+		<ui-button
+			text="Cancelar"
+			additionalClasses="btn__primary--red xl"
+			(click)="cancel()"
+		></ui-button>
+
+		<ui-button
+			text="{{edit()?'Actualizar':'Crear'}} Factor"
+			additionalClasses="btn__primary xl"
+			[disabled]="buttonDisabled()"
+			(click)="saveOrUpdateFactorDeducible()"
+		></ui-button>
+	</div>
+</div>

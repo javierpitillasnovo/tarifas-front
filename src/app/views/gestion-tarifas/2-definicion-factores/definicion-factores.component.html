@@ -1,0 +1,123 @@
+
+<div class="definicion-factores__breadcrumbs">
+	Grupo de Seguro:
+	<div class="green">{{ grupoSeguro().id }} - {{ grupoSeguro().descripcion }}</div>
+	&nbsp; - &nbsp; Plan:
+	<div class="green">{{ plan() }}</div>
+	&nbsp; - &nbsp; Línea:
+	<div class="green">{{ linea().descripcion }}</div>
+</div>
+@defer (when riesgosLoaded() && listRiesgos()) {
+	<div class="configuracion__data">
+		<ui-table
+			[dataOriginal]="listRiesgos()"
+			[showAddButton]="false"
+			[defaultActions]="false"
+			[showPagination]="false"
+		>
+			<ng-template
+				tableColumn
+				header="Riesgo"
+				[headerIsVisible]="true"
+				contentAlign="center"
+				let-item
+			>
+				{{ item.idRiesgo }} - {{ item.descripcionRiesgo }}
+			</ng-template>
+			<ng-template 
+				tableColumn 
+				header="Estado" 
+				[headerIsVisible]="true"
+				contentAlign="center" 
+				let-item
+			>
+				<ui-tag [status]="getEstado(item)" [text]="getDescripcion(item)" [icon]="false"></ui-tag>
+			</ng-template>
+			<ng-template 
+				tableColumn 
+				header="SIM." 
+				[headerIsVisible]="true"
+				contentAlign="center" 
+				let-item
+			>
+				<ui-switch-button
+					[(power)]="item.simulado"
+					(powerChange)="changeSimulacion(item, item.simulado)"
+				></ui-switch-button>
+			</ng-template>
+			<ng-template
+				tableColumn
+				header="Versión"
+				[headerIsVisible]="true"
+				contentAlign="center"
+				let-item
+				style="width: 120px"
+			>
+				@if (
+					item.simulado && item.versionesSimulacion.length >= 1 && !simuladaSelectReloading()
+				) {
+					<ui-select
+						placeholder="Versión"
+						[selectOptions]="getVersionesSimuladasSelect(item)"
+						[value]="getIdVersionSimulacionSeleccionada(item)"
+						(selectChanges)="setVersionSimuladaSelect($event, item)"
+					></ui-select>
+
+					<i
+						class="icon-add"
+						(click)="addVersion(item)"
+						(keydown.enter)="addVersion(item)"
+						tabindex="0"
+					></i>
+
+				} @else if (item.simulado && item.versionesSimulacion.length === 0) {
+					No hay versiones simuladas
+				} @else if (!item.simulado) {
+					{{ getVersionDefinitiva(item).version }}
+				}
+			</ng-template>
+			
+			<ng-template 
+				tableColumn 
+				header="Editar" 
+				[headerIsVisible]="false" 
+				contentAlign="center"
+				let-item
+			>
+					<i
+						class="icon-edit"
+						(click)="editFactores(item)"
+						(keydown.enter)="editFactores(item)"
+						tabindex="0"
+					></i>
+			</ng-template>
+			<ng-template tableColumn header="Copiar" [headerIsVisible]="false" let-item>
+				<i
+					class="icon-copy"
+					(click)="copyPlanLineaRiesgo(item)"
+					(keydown.enter)="copyPlanLineaRiesgo(item)"
+					tabindex="0"
+				></i>
+			</ng-template>
+			<ng-template tableColumn header="Eliminar" [headerIsVisible]="false" let-item>
+				<i
+					class="icon-trash"
+					(click)="deletePlanLineaRiesgo(item)"
+					(keydown.enter)="deletePlanLineaRiesgo(item)"
+					tabindex="0"
+				></i>
+			</ng-template>
+
+			<ng-template tableColumn header="step3" [headerIsVisible]="false" let-item>
+				<i
+					class="icon-arrow-right"
+					(click)="goToStep3(item)"
+					(keydown.enter)="goToStep3(item)"
+					tabindex="0"
+				></i>
+			</ng-template>
+		</ui-table>
+	</div>
+} @placeholder {
+	<span class="placeholder" [class.error]="onLoadError()">{{ placeholder() }}</span>
+}

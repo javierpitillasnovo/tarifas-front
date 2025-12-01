@@ -1,0 +1,78 @@
+<div class="asignacionCoeficientes__breadcrumb">
+  Grupo de Seguro:
+  <div class="green">
+    {{ grupoSeguro().id }} - {{ grupoSeguro().descripcion }}
+  </div>
+  &nbsp; - &nbsp; Plan:
+  <div class="green">{{ plan() }}</div>
+  &nbsp; - &nbsp; Línea:
+  <div class="green">{{ linea().descripcion }}</div>
+</div>
+
+<div class="asignacionCoeficientes__tabla">
+  <ui-table
+    [dataOriginal]="data()"
+    [filterId]="'id'"
+    [showAddButton]="showAddButton()"
+    [showPagination]="true"
+    [defaultActions]="false"
+    (itemAdd)="itemAdd()"
+  >
+    <!-- Nombre -->
+    <ng-template tableColumn header="Nombre Coeficiente" [headerIsVisible]="true" let-item>
+      @if (item.selected === true) {
+        <ui-input placeholder="Nombre coeficiente" [(value)]="item.nombre"></ui-input>
+      } @else {
+        {{ item.nombre }}
+      }
+    </ng-template>
+
+    <!-- Columna Valores -->
+    <ng-template tableColumn header="Valores" [headerIsVisible]="true" let-item contentAlign="center">
+      @if (item.id !== 0) {
+        <i
+          class="icon-search"
+          (click)="verValores(item)"
+          (keydown.enter)="verValores(item)"
+          tabindex="0"
+        ></i>
+      }
+    </ng-template>
+
+    <!-- Columna Acciones -->
+    <ng-template tableColumn header="Acciones" [headerIsVisible]="true" let-item contentAlign="center">
+      @if (item.selected === true) {
+        <!-- Guardar y Cancelar (solo en fila nueva o en edición) -->
+        <i
+          class="icon-save"
+          (click)="saveCoeficiente(item)"
+          (keydown.enter)="saveCoeficiente(item)"
+          tabindex="0"
+        ></i>
+        <i
+          class="icon-cross"
+          (click)="deleteCoeficiente(item)"
+          (keydown.enter)="deleteCoeficiente(item)"
+          tabindex="0"
+        ></i>
+      } @else {
+        <!-- Editar y Borrar (solo en filas existentes) -->
+        @if (item.id !== 0) {
+          <i
+            class="icon-edit"
+            (click)="editarCoeficiente(item)"
+            (keydown.enter)="editarCoeficiente(item)"
+            tabindex="0"
+          ></i>
+          <i
+            class="icon-trash"
+            (click)="deleteCoeficiente(item)"
+            (keydown.enter)="deleteCoeficiente(item)"
+            tabindex="0"
+          ></i>
+        }
+      }
+    </ng-template>
+  </ui-table>
+</div>
+

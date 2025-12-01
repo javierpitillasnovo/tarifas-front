@@ -1,0 +1,66 @@
+<div class="consulta-riesgo-tarificado__breadcrumbs">
+    Grupo de Seguro: &nbsp;
+    <div class="green">{{ grupoSeguro().descripcion }}</div>
+    &nbsp; - &nbsp; Plan: &nbsp;
+    <div class="green">{{ plan() }}</div>
+    &nbsp; - &nbsp; Línea: &nbsp;
+    <div class="green">{{ linea().descripcion }}</div>
+    &nbsp; - &nbsp; Versión: &nbsp;
+    <div class="green">{{ version() }}</div>
+    &nbsp; - &nbsp; Riesgo: &nbsp;
+    <div class="green">{{ planLineaRiesgo().descripcionRiesgo }}</div>
+</div>
+
+<ui-table
+    class="tabla-riesgos"
+    [defaultActions]="false"
+    [showAddButton]="false"
+    [showDeleteButton]="false"
+    [showPagination]="true"
+    [disabled]="false" 
+    [dataOriginal]="data()"
+    [filterId]="'tarifa'"
+>
+
+    <!-- Tarifa -->
+    <ng-template
+      tableColumn
+      header="Tarifa Base/Pura"
+      [headerIsVisible]="true"
+      let-row
+    >
+      {{ row.nombre }}
+    </ng-template>
+
+    <!-- Añadir Coeficientes -->
+    <ng-template
+      tableColumn
+      header="Añadir Coeficientes"
+      [headerIsVisible]="true"
+      let-row
+    >
+      <i class="icon-edit yellow" (click)="openModalCoeficientes(row)"></i>
+    </ng-template>
+
+    <!-- Añadir Límites -->
+    <ng-template
+      tableColumn
+      header="Añadir Límites"
+      [headerIsVisible]="true"
+      let-row
+    >
+      <i class="icon-edit green" (click)="openModalLimites(row)"></i>
+    </ng-template>
+
+    <!-- Ver Detalle -->
+    <ng-template
+      tableColumn
+      header="Ver Detalle"
+      [headerIsVisible]="true"
+      let-row
+    >
+      <i class="icon-eye" (click)="openModalDetalle(row)"></i>
+    </ng-template>
+
+</ui-table>
+
