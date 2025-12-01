@@ -5,15 +5,15 @@
 	text-align: center;
 	.placeholder {
 		@include body-regular;
-		color: $color-primary-green;
+		color: $verde;
 		&.error {
-			color: $color-primary-red;
+			color: $rojo;
 		}
 	}
 	
 	&__breadcrumbs {
-		font-family: 'FrutigerBold';
-		color: #1b1b1fa8;
+		font-family: $font;
+		color: rgba($gray-900, 0.66);
 		display: flex;
 		align-items: center;
 		gap: 4px;
@@ -21,30 +21,18 @@
 		padding: 1rem 0;
     	padding-left: 3rem;
 		.green {
-			color: $color-primary-green;
-		}
-	}
-
+			color: $verde;
 	&__data {
-		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		overflow-x: auto;
-	}
-
 	&__actions {
-		display: flex;
-		align-items: center;
 		padding-bottom: 20px;
 		padding-left: 50px;
 		padding-right: 50px;
 		gap: 50px;
 		margin-top: 2rem;
 		justify-content: space-between;
-	}
-
 	ui-table {
 		min-width: 92%;
-	}
-	
 }

@@ -7,7 +7,7 @@
 	justify-content: center;
 	gap: 12px;
 	h2 {
-		color: $color-primary-green;
+		color: $verde;
 		@include h6;
 		font-size: 22px;
 		margin-bottom: 12px;
@@ -22,25 +22,14 @@
 		padding-left: 50px;
 		padding-right: 50px;
 		gap: 50px;
-	}
-
 	.placeholder {
 		@include body-regular;
-		color: $color-primary-green;
-	}
-
 	.error {
-		@include body-regular;
-		color: $color-primary-red;
-	}
-
+		color: $rojo;
 	//Temporary fix for the transfer list component
 	::ng-deep {
 		.transferList__box{
 				max-height: 150px;
 				overflow: auto;
 			}
-	}
 }
-
-

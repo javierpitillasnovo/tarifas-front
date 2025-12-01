@@ -4,7 +4,6 @@
 .modal-gestion {
 	height: 85vh;
 	overflow: auto;
-
 	&__form {
 		display: flex;
 		flex-direction: column;
@@ -15,26 +14,20 @@
 	// siempre 10 por página
 	.pagination__pageSize {
 		display: none;
-	}
-
 	.title {
 		@include h5;
-		color: $color-primary-green;
+		color: $verde;
 		text-align: center;
 		margin-bottom: 24px;
 		padding-top: 32px;
-	}
-
 	.content {
 		max-height: 60%;
 		width: 95%;
 		flex: 1 1 auto;
 		min-height: 0;
-
 		.cellContainer-text {
 			display: flex;
 			justify-content: flex-start;
 			width: 100%;
 		}
-	}
 }

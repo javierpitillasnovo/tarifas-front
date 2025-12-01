@@ -9,35 +9,26 @@
 
 	&__title {
 		@include h5;
-		color: $color-primary-green;
+		color: $verde;
 		display: flex;
 		align-items: center;
 		justify-content: center;
         padding: 52px;
 	}
-
 	&__breadcrumb {
-		font-family: "FrutigerBold";
-		color: #1B1B1FA8;
+		font-family: $font;
+		color: rgba($gray-900, 0.66);
 		font-size: 16px;
 		font-weight: 400;
 		font-style: normal;
 		line-height: 160%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
         padding-top: 12px;
 		padding-bottom: 52px;
 		padding-left: 52px;
 		padding-right: 52px;
-	}
 }
-
 .green{
-	color: $color-primary-green;
-}
-
+	color: $verde;
 .content{
     padding-left: 2rem;
     padding-right: 2rem;
-}

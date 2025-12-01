@@ -4,22 +4,18 @@
 	text-align: center;
 	.placeholder {
 		@include body-regular;
-		color: $color-primary-green;
+		color: $verde;
 		&.error {
-			color: $color-primary-red;
+			color: $rojo;
 		}
 	}
 
 	&__title {
 		@include h5;
-		color: $color-primary-green;
 		text-align: center;
 		margin-bottom: 24px;
 		padding-top: 32px;
-	}
-
 	&__breadcrumbs {
-		@include body-regular;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
@@ -27,18 +23,10 @@
 		font-weight: 400;
 		font-style: normal;
 		line-height: 160%;
-		color: $color-secondary-black-66;
-	}
-
+		color: rgba($gray-900, 0.66);
 	&__data {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
 		overflow-x: auto;
-	}
-
 	&__actions {
-		display: flex;
 		align-items: center;
 		padding-top: 20px;
 		padding-bottom: 20px;
@@ -47,13 +35,8 @@
 		gap: 50px;
 		margin-top: 2rem;
 		justify-content: space-between;
-	}
-
 	&__content{
 		padding-left: 2rem;
 		padding-right: 2rem;
-	}
 	
 }
-
-

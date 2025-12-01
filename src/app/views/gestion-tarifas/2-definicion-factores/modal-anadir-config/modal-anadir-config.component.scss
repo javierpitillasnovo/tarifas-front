@@ -7,11 +7,10 @@
 	justify-content: center;
 	gap: 12px;
 	h2 {
-		color: $color-primary-green;
+		color: $verde;
 		@include h6;
 		font-size: 22px;
 	}
 	ui-button {
 		margin-top: 12px;
-	}
 }

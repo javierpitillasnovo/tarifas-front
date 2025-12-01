@@ -5,7 +5,7 @@
 // }
 .title {
 	@include h5;
-	color: $color-primary-green;
+	color: $verde;
 	text-align: center;
 	margin-bottom: 24px;
 	padding-top: 32px;
@@ -18,16 +18,13 @@
 		align-items: center;
 		justify-content: center;
 		gap: 32px;
-
 		&--buttons {
 			display: flex;
 			gap: 24px;
 			flex-wrap: wrap;
 			justify-content: center;
-
 			ui-button {
 				min-width: 220px;
 			}
 		}
 	}
-}

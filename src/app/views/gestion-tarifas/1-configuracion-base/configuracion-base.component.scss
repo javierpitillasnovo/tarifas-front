@@ -16,30 +16,19 @@
 		gap: 24px;
 		width: fit-content;
 	}
-
 	.placeholder {
 		@include body-regular;
-		color: $color-primary-green;
-	}
-
+		color: $verde;
 	.error {
-		@include body-regular;
-		color: $color-primary-red;
-	}
-
+		color: $rojo;
 	&__actions {
-		display: flex;
 		flex-direction: row;
-		align-items: center;
 		padding-top: 20px;
 		padding-bottom: 20px;
 		padding-left: 50px;
 		padding-right: 50px;
 		gap: 50px;
 		margin-top: 2rem;
-	}
 }
-
 .button-text{
 	text-transform: none;
-}

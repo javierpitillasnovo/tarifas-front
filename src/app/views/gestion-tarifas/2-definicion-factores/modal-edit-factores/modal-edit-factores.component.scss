@@ -13,22 +13,19 @@
 	background: transparent !important;
 	box-shadow: none !important;
 	z-index: auto !important;
-
 	h2 {
-		color: $color-primary-green;
+		color: $verde;
 		@include h6;
 		font-size: 24px;
 		margin-bottom: 12px;
 	}
-
 		&__breadcrumb {
 			position: absolute;
 			top: 8px;
 			left: 32px;
 			right: 32px;
-			font-family: 'FrutigerBold';
-			color: #1b1b1fa8;
-
+			font-family: $font;
+			color: rgba($gray-900, 0.66);
 			font-weight: 400;
 			font-style: normal;
 			line-height: 160%;
@@ -39,7 +36,6 @@
 			font-size: 22px;
 			padding: 4px 0;
 		}
-
 	&__actions {
 		display: flex;
 		flex-direction: row;
@@ -48,104 +44,60 @@
 		padding-bottom: 20px;
 		gap: 50px;
 		flex: 0 0 auto;
-	}
-
 	&__actions-valores {
 		width: 100%;
-		display: flex;
-		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
-		align-items: center;
 		margin-bottom: 1rem;
-	}
-
 	&__principal-text {
 		color: #000;
 		text-align: center;
-		font-family: Frutiger;
+		font-family: $font;
 		font-size: 20px;
 		font-style: normal;
 		font-weight: 400;
 		line-height: 160%;
-	}
-
 	&__text-container {
 		text-align: left;
-	}
-
 	&__secondary-text {
-		display: flex;
-		flex-direction: row;
 		color: var(--Gris, #c1c1c1);
-		font-family: Frutiger;
 		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: 160%;
 		margin-top: 0.7rem;
-	}
-
 	.green {
-		color: $color-primary-green;
-	}
-
 	.placeholder {
 		@include body-regular;
-		color: $color-primary-green;
-	}
-
 	.error {
-		@include body-regular;
-		color: $color-primary-red;
-	}
-
+		color: $rojo;
 	.content {
 		max-height: calc(80vh - 160px);
 		overflow: auto;
 		width: 95%;
 		flex: 1 1 auto;
 		min-height: 0;
-	}
 		> .modal-edit__actions {
-			position: absolute;
 			top: 100%;
 			left: 50%;
 			transform: translateX(-50%);
-			display: flex;
 			gap: 24px;
-			align-items: center;
 			justify-content: center;
 			z-index: 5;
-		}
-
 	.tabs-component {
 		padding-top: 5%;
 		padding-right: 1rem;
 		padding-left: 1rem;
-	}
-
 	.button-text {
 		text-transform: none !important;
-	}
-
 	//Temporary fix for the accordion component
 	::ng-deep {
 		.transferList__box {
 			max-height: 150px;
 			overflow: auto;
-		}
 		.accordion__content {
-			border: 1px solid #007c2a;
+			border: 1px solid $verde;
 			margin-bottom: 1rem;
 			border-bottom-left-radius: 12px;
 			border-bottom-right-radius: 12px;
-		}
 		.accordion {
 			border: none;
-		}
 		.accordion--closed .accordion__header {
-			margin-bottom: 1rem;
-		}
-	}
 }

@@ -7,54 +7,36 @@
 	gap: 16px;
 	width: 100%;
 	padding: 20px 40px;
-
 	&__breadcrumb {
-		font-family: 'FrutigerBold';
-		color: #1b1b1fa8;
+		font-family: $font;
+		color: rgba($gray-900, 0.66);
 		display: flex;
 		align-items: center;
 		gap: 4px;
 		font-size: 16px;
-
 		.green {
-			color: $color-primary-green;
+			color: $verde;
 		}
 	}
-
 	&__actions {
-		display: flex;
 		flex-direction: row;
-		align-items: center;
 		padding-top: 20px;
 		padding-bottom: 20px;
 		gap: 50px;
 		flex: 0 0 auto;
-	}
-
 	&__accordion {
 		width: 100%;
 		margin: 0 auto;
-	}
-
 	&__actions-valores {
-		display: flex;
 		justify-content: center;
-		align-items: center;
 		margin-bottom: 12px;
-	}
-
 	&__no-data {
 		text-align: center;
 		color: #666;
-		font-family: Frutiger;
+		font-family: $font;
 		padding: 12px;
-	}
-
 	&__footer {
-		display: flex;
 		justify-content: space-between;
-		width: 100%;
 		max-width: 1200px;
 		margin-top: 20px;
-	}
 }

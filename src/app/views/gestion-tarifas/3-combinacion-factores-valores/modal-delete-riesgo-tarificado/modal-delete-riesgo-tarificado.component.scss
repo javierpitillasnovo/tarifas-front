@@ -7,7 +7,7 @@
 	justify-content: center;
 	gap: 12px;
 	h2 {
-		color: $color-primary-green;
+		color: $verde;
 		@include h6;
 		font-size: 24px;
 		margin-bottom: 12px;
@@ -22,51 +22,29 @@
 		padding-left: 50px;
 		padding-right: 50px;
 		gap: 50px;
-	}
-
 	&__principal-text{
 		color: #000;
 		text-align: center;
-		font-family: Frutiger;
+		font-family: $font;
 		font-size: 20px;
 		font-style: normal;
 		font-weight: 400;
 		line-height: 160%; 
-	}
-
 	&__text-container{
 		text-align: left; 
-	}
-
 	&__secondary-text{
-		display: flex;
-		flex-direction: row;
 		color: var(--Gris, #C1C1C1);
-		font-family: Frutiger;
 		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
 		line-height: 160%;
 		margin-top: 0.7rem;
-	}
-
 	.placeholder {
 		@include body-regular;
-		color: $color-primary-green;
-	}
-
 	.error {
-		@include body-regular;
-		color: $color-primary-red;
-	}
-
+		color: $rojo;
 	//Temporary fix for the transfer list component
 	::ng-deep {
 		.transferList__box{
 				max-height: 150px;
 				overflow: auto;
 			}
-	}
 }
-
-

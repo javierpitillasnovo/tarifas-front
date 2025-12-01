@@ -7,44 +7,32 @@
 	gap: 16px;
 	width: 100%;
 	padding: 20px 40px;
-
 	/* === MIGA DE PAN (idéntica al estilo de creacion-coeficientes) === */
 	&__breadcrumb {
-		font-family: 'FrutigerBold';
-		color: #1b1b1fa8;
+		font-family: $font;
+		color: rgba($gray-900, 0.66);
 		display: flex;
 		align-items: center;
 		gap: 4px;
 		font-size: 16px;
 		flex-wrap: wrap;
-
 		.green {
-			color: $color-primary-green;
+			color: $verde;
 		}
 	}
-
 	/* === Título === */
 	&__title {
-		color: $color-primary-green;
-		font-family: 'FrutigerBold';
+		color: $verde;
 		font-size: 22px;
 		text-align: center;
-	}
-
 	/* === Tabla === */
 	&__tabla {
 		width: 100%;
-	}
-
 	/* === Footer === */
 	&__footer {
-		display: flex;
 		justify-content: flex-start;
-		width: 100%;
 		max-width: 1200px;
 		margin-top: 20px;
-	}
-
 	/* === Iconos dentro de la tabla === */
 	.icon-search,
 	.icon-save,
@@ -54,25 +42,13 @@
 		font-size: 20px;
 		margin: 0 4px;
 		transition: transform 0.15s ease;
-	}
-
 	.icon-search {
-		color: $color-primary-green;
-	}
 	.icon-save {
-		color: $color-primary-green;
-	}
 	.icon-cross {
-		color: $color-primary-red;
-	}
-	.icon-trash {
-		color: $color-primary-red;
-	}
-
+		color: $rojo;
 	.icon-search:hover,
 	.icon-save:hover,
 	.icon-cross:hover,
 	.icon-trash:hover {
 		transform: scale(1.1);
-	}
 }

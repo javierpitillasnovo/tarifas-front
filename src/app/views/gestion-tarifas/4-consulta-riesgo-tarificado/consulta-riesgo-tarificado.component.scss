@@ -2,76 +2,51 @@
 @use 'base' as *;
 
 .consulta-riesgo-tarificado {
-
     &__breadcrumbs {
-        font-family: 'FrutigerBold';
-		color: #1b1b1fa8;
+        font-family: $font;
+		color: rgba($gray-900, 0.66);
 		display: flex;
 		align-items: center;
 		gap: 4px;
 		font-size: 16px;
 		padding: 1rem 0;
 		.green {
-			color: $color-primary-green;
+			color: $verde;
 		}
     }
-
     &__content {
         width: 90%;
         margin: 0 auto;
         padding-bottom: 50px;
-    }
-
     .icon-edit {
         cursor: pointer;
         font-size: 22px;
-
         &.yellow {
             color: #f6b400;
         }
-
         &.green {
             color: #00a651;
-        }
-    }
-
     .icon-eye {
-        cursor: pointer;
         color: #5b5b5b;
-        font-size: 22px;
-    }
 }
 .tabla-riesgos {
     .tableBasic__table thead {
         background: #1f8f37;
         color: white;
-
         th {
             font-weight: 600;
             font-size: 14px;
             padding: 12px;
             border-right: 1px solid #0d6827;
-
             &:last-child {
                 border-right: none;
             }
-        }
-    }
-
     tbody td {
         text-align: center;
         padding: 12px 0;
-    }
-
     i.icon-edit.yellow {
         color: #f0b400;
-    }
-
     i.icon-edit.green {
         color: #1f8f37;
-    }
-
     i.icon-eye {
         color: #4e4e4e;
-    }
-}

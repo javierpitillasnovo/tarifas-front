@@ -9,7 +9,6 @@
 	padding: 1rem 4rem;
 	margin-top: 1rem;
 	gap: 2rem;
-
 	&__combos {
 		display: flex;
 		align-items: flex-end;
@@ -19,33 +18,18 @@
 		width: 100%;
 		max-width: 900px;
 	}
-
 	.placeholder {
 		@include body-regular;
-		color: $color-primary-green;
+		color: $verde;
 		text-align: center;
-	}
-
 	.error {
-		@include body-regular;
-		color: $color-primary-red;
-		text-align: center;
-	}
-
+		color: $rojo;
 	&__actions {
-		display: flex;
-		justify-content: center;
 		align-items: center;
 		gap: 2rem;
 		margin-top: 1rem;
-		flex-wrap: wrap;
-	}
-
 	ui-button {
 		min-width: 260px;
-	}
 }
-
 .button-text {
 	text-transform: none;
-}

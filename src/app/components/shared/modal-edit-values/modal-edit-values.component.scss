@@ -5,66 +5,41 @@
   padding: 30px 40px;
   min-width: 600px;
   text-align: center;
-
   .titulo {
     font-size: 32px;
     font-weight: bold;
-    color: #007A33;
+    color: $verde;
     margin-bottom: 20px;
   }
-
   .subtitulo {
     font-size: 16px;
     margin-bottom: 30px;
-
     .green {
-      color: #007A33;
+      color: $verde;
       font-weight: bold;
     }
-  }
-
   .contenido {
     display: flex;
     justify-content: center;
     gap: 40px;
-    margin-bottom: 30px;
-  }
-
   .opciones {
     text-align: left;
     min-width: 200px;
-
     label {
       display: flex;
       gap: 8px;
       margin-bottom: 12px;
       font-size: 16px;
-
       input {
         transform: scale(1.2);
       }
-    }
-  }
-
   .valor-input {
-    display: flex;
     align-items: center;
     gap: 12px;
-
     span {
       font-size: 18px;
       font-weight: 500;
-    }
-  }
-
   .acciones {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-  }
   .label-valor {
-    color: #007A33;
     font-weight: 600;
-  }
-
 }
